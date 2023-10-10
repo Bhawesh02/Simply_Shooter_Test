@@ -17,6 +17,8 @@ public class PlayerView : MonoBehaviour
 
     private float nextEnemyDetectionTime;
 
+    public WeaponContainer WeaponContainer;
+
     private void Awake()
     {
         PlayerController = new(this);

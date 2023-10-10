@@ -411,11 +411,6 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1818750678}
   m_SourcePrefab: {fileID: 100100000, guid: dfd1f306f82b944828f7a995c92080af, type: 3}
---- !u!1 &215301922 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5947256146199843476, guid: 6f6021a1e82d34ccc9c2915a06f788fc, type: 3}
-  m_PrefabInstance: {fileID: 1197946651}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &312214211
 GameObject:
   m_ObjectHideFlags: 0
@@ -1147,6 +1142,22 @@ PrefabInstance:
       propertyPath: EnemyLayer.m_Bits
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 3582554474214256717, guid: 6f6021a1e82d34ccc9c2915a06f788fc, type: 3}
+      propertyPath: WeaponContainer.PistolContainer
+      value: 
+      objectReference: {fileID: 1197946655}
+    - target: {fileID: 3582554474214256717, guid: 6f6021a1e82d34ccc9c2915a06f788fc, type: 3}
+      propertyPath: WeaponContainer.ShotgunContainer
+      value: 
+      objectReference: {fileID: 1197946654}
+    - target: {fileID: 3582554474214256717, guid: 6f6021a1e82d34ccc9c2915a06f788fc, type: 3}
+      propertyPath: WeaponContainer.LauncherContainer
+      value: 
+      objectReference: {fileID: 1197946652}
+    - target: {fileID: 3582554474214256717, guid: 6f6021a1e82d34ccc9c2915a06f788fc, type: 3}
+      propertyPath: WeaponContainer.MachinegunContainer
+      value: 
+      objectReference: {fileID: 1197946653}
     - target: {fileID: 5947256146199843476, guid: 6f6021a1e82d34ccc9c2915a06f788fc, type: 3}
       propertyPath: m_Name
       value: Player
@@ -1158,11 +1169,28 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 5947256146199843476, guid: 6f6021a1e82d34ccc9c2915a06f788fc, type: 3}
-      insertIndex: 2
-      addedObject: {fileID: 1813452761}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6f6021a1e82d34ccc9c2915a06f788fc, type: 3}
+--- !u!1 &1197946652 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7475144629504641307, guid: 6f6021a1e82d34ccc9c2915a06f788fc, type: 3}
+  m_PrefabInstance: {fileID: 1197946651}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1197946653 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8833603935719772408, guid: 6f6021a1e82d34ccc9c2915a06f788fc, type: 3}
+  m_PrefabInstance: {fileID: 1197946651}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1197946654 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1454180656483217223, guid: 6f6021a1e82d34ccc9c2915a06f788fc, type: 3}
+  m_PrefabInstance: {fileID: 1197946651}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1197946655 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1284599364733565364, guid: 6f6021a1e82d34ccc9c2915a06f788fc, type: 3}
+  m_PrefabInstance: {fileID: 1197946651}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1261901626 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5008381990371707673, guid: af287a0fc91314bc385278430e54b910, type: 3}
@@ -1308,19 +1336,6 @@ NavMeshAgent:
   m_CorrespondingSourceObject: {fileID: 5508961813236477470, guid: 6f6021a1e82d34ccc9c2915a06f788fc, type: 3}
   m_PrefabInstance: {fileID: 1197946651}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1813452761
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 215301922}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1e5565261c3c89040946bed14224a58c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerView: {fileID: 0}
 --- !u!1 &1818750676 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1172102263697165845, guid: dfd1f306f82b944828f7a995c92080af, type: 3}
