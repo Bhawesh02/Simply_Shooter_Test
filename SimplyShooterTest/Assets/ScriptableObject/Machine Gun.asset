@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d41bf4723379154a8048aaecb2c33e5, type: 3}
   m_Name: Machine Gun
   m_EditorClassIdentifier: 
-  WeaponType: 0
+  WeaponType: 2
   AttackRange: 10
   FireRate: 10
