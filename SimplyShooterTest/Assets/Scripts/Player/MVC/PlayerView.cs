@@ -10,7 +10,7 @@ public class PlayerView : MonoBehaviour
     
     public PlayerController PlayerController;
 
-    public float AttackRange;
+    public WeaponScritableObject startWeapon;
     public LayerMask EnemyLayer;
     public float EnemyDetectionDelay = 0.1f;
     public EnemyView Enemy;
@@ -35,6 +35,7 @@ public class PlayerView : MonoBehaviour
     private void Start()
     {
         nextEnemyDetectionTime = Time.time;
+        PlayerController.ChangeWeapon(startWeapon);
     }
     private void Update()
     {

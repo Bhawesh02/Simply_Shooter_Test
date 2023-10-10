@@ -29,9 +29,40 @@ public class PlayerController
         playerView.NavMeshAgent.Move(scaledMovement);
     }
 
+    public void ChangeWeapon(WeaponScritableObject weapon)
+    {
+        if (weapon.WeaponType == playerModel.CurrentWeapon)
+            return;
+        playerModel.AttackRange = weapon.AttackRange;
+        playerModel.FireRate = weapon.FireRate;
+        playerModel.CurrentWeapon = weapon.WeaponType;
+        playerModel.CurrentWeaponContainer?.SetActive(false);
+        ShowWeapon(weapon.WeaponType);
+    }
+
+    private void ShowWeapon(WeaponTypes weaponType)
+    {
+        switch (weaponType)
+        {
+            case WeaponTypes.Pistol:
+                playerModel.CurrentWeaponContainer = playerView.WeaponContainer.PistolContainer;
+                break;
+            case WeaponTypes.Shotgun:
+                playerModel.CurrentWeaponContainer = playerView.WeaponContainer.ShotgunContainer;
+                break;
+            case WeaponTypes.MachineGun:
+                playerModel.CurrentWeaponContainer = playerView.WeaponContainer.MachinegunContainer;
+                break;
+            case WeaponTypes.Launcher:
+                playerModel.CurrentWeaponContainer = playerView.WeaponContainer.LauncherContainer;
+                break;
+        }
+        playerModel.CurrentWeaponContainer.SetActive(true);
+    }
+
     public void DetectEnemy()
     {
-        Collider[] enemyColliders = Physics.OverlapSphere(playerView.transform.position, playerView.AttackRange, playerView.EnemyLayer);
+        Collider[] enemyColliders = Physics.OverlapSphere(playerView.transform.position, playerModel.AttackRange, playerView.EnemyLayer);
         if (enemyColliders.Length == 0)
         {
             playerModel.Enemy = null;
