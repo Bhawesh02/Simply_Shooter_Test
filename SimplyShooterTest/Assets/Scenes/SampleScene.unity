@@ -369,7 +369,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &312214212
 RectTransform:
   m_ObjectHideFlags: 0
@@ -438,7 +438,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   JoystickRectTransform: {fileID: 0}
-  JoystickKnob: {fileID: 616571163}
+  JoystickKnob: {fileID: 616571162}
   JoystickSize: {x: 300, y: 300}
 --- !u!1 &329549251
 GameObject:

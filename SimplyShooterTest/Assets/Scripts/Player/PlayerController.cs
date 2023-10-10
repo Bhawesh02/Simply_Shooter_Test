@@ -1,4 +1,5 @@
 
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem.EnhancedTouch;
 
@@ -9,7 +10,6 @@ public class PlayerController
     {
         movementAmount = Vector2.zero;
         joystick.gameObject.SetActive(true);
-        joystick.JoystickRectTransform.sizeDelta = joystick.JoystickSize;
         joystick.JoystickRectTransform.anchoredPosition = ClampPostion(movementFinger.screenPosition, joystick);
     }
 
@@ -34,5 +34,10 @@ public class PlayerController
             startPosition.y = Screen.width - joystick.JoystickSize.y / 2;
         }
         return startPosition;
+    }
+
+    public void SetMovementAmount(Vector2 movAmt)
+    {
+        movementAmount = movAmt;
     }
 }

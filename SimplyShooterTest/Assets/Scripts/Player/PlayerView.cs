@@ -1,6 +1,7 @@
 
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.EnhancedTouch;
 using ETouch = UnityEngine.InputSystem.EnhancedTouch;
 
@@ -22,14 +23,14 @@ public class PlayerView : MonoBehaviour
         EnhancedTouchSupport.Enable();
         ETouch.Touch.onFingerDown += HandelFingerDown;
         ETouch.Touch.onFingerMove += HandelFingerMove;
-        ETouch.Touch.onFingerUp += Touch_onFingerUp;
+        ETouch.Touch.onFingerUp += HandelFingerUp;
     }
     private void OnDisable()
     {
-        EnhancedTouchSupport.Disable();
         ETouch.Touch.onFingerDown -= HandelFingerDown;
         ETouch.Touch.onFingerMove -= HandelFingerMove;
-        ETouch.Touch.onFingerUp -= Touch_onFingerUp;
+        ETouch.Touch.onFingerUp -= HandelFingerUp;
+        EnhancedTouchSupport.Disable();
     }
     private void HandelFingerDown(Finger fingerDown)
     {
@@ -41,11 +42,15 @@ public class PlayerView : MonoBehaviour
     private void HandelFingerMove(Finger fingerMoved)
     {
         if(fingerMoved!=movementFinger) return;
-        movementJoystick.SetKnobPosition(fingerMoved);
+        movementJoystick.SetKnobPositionToTouch(fingerMoved);
+        playerController.SetMovementAmount(movementJoystick.GetMovementAmount());
     }
-    private void Touch_onFingerUp(Finger obj)
+    private void HandelFingerUp(Finger lostFinger)
     {
-        throw new System.NotImplementedException();
+        if(lostFinger!=movementFinger) return;
+        movementFinger = null;
+        movementJoystick.ResetJoystick();
+        playerController.SetMovementAmount(Vector2.zero);
     }
 
     
