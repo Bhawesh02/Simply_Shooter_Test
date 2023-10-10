@@ -36,11 +36,9 @@ public class PlayerController
 
     public void ChangeWeapon(WeaponScritableObject weapon)
     {
-        if (weapon.WeaponType == playerModel.CurrentWeapon)
+        if (playerModel.CurrentWeapon != null && weapon.WeaponType == playerModel.CurrentWeapon.WeaponType)
             return;
-        playerModel.AttackRange = weapon.AttackRange;
-        playerModel.FireRate = weapon.FireRate;
-        playerModel.CurrentWeapon = weapon.WeaponType;
+        playerModel.CurrentWeapon = weapon;
         playerModel.CurrentWeaponContainer?.SetActive(false);
         ShowWeapon(weapon.WeaponType);
     }
@@ -78,15 +76,15 @@ public class PlayerController
         if (Time.time >= nextEnemyShootTime)
         {
             ShootAtEnemy();
-            nextEnemyShootTime = Time.time + (60f/playerModel.FireRate)/60f;
+            nextEnemyShootTime = Time.time + (60f / playerModel.CurrentWeapon.FireRate) / 60f;
         }
     }
 
-    
+
 
     private void DetectEnemy()
     {
-        Collider[] enemyColliders = Physics.OverlapSphere(playerView.transform.position, playerModel.AttackRange, playerView.EnemyLayer);
+        Collider[] enemyColliders = Physics.OverlapSphere(playerView.transform.position, playerModel.CurrentWeapon.AttackRange, playerView.EnemyLayer);
         if (enemyColliders.Length == 0)
         {
             playerModel.Enemy = null;
@@ -104,7 +102,7 @@ public class PlayerController
     private void ShootAtEnemy()
     {
         ProjectileController projectile;
-        if (playerModel.CurrentWeapon == WeaponTypes.Launcher)
+        if (playerModel.CurrentWeapon.ProjectileType == ProjectileType.Missile)
             projectile = ProjectileService.Instance.GetMissile();
         else
             projectile = ProjectileService.Instance.GetBullet();

@@ -4,11 +4,16 @@ public class BulletController : ProjectileController
 {
     protected override void DealDamage()
     {
-        throw new System.NotImplementedException();
+        Debug.Log("Deal Damage to enemy");
     }
 
     protected override void OnTriggerEnter(Collider other)
     {
-        throw new System.NotImplementedException();
+        EnemyView enemy = other.GetComponent<EnemyView>();
+        if (enemy!=null)
+        {
+            DealDamage();
+        }
+        ProjectileService.Instance.ReturnBullet(this);
     }
 }

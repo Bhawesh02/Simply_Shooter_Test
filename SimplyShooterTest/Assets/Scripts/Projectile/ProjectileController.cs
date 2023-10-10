@@ -20,7 +20,8 @@ public abstract class ProjectileController : MonoBehaviour
     {
         Vector3 direction = (EnemyTransform.position - transform.position).normalized;
         direction.y = 0;
-        rigidbody.velocity =  Time.deltaTime * projectileData.Speed * direction;
+        rigidbody.velocity =  projectileData.Speed * direction;
+        Debug.Log(rigidbody.velocity);
     }
     protected abstract void OnTriggerEnter(Collider other);
     protected abstract void DealDamage();

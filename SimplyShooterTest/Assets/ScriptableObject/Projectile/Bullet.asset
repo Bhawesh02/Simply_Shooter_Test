@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Bullet
   m_EditorClassIdentifier: 
   ProjectileType: 0
-  Speed: 10
+  Speed: 4
   Damage: 15
   HasAoeDamange: 0
   AoeRange: 0

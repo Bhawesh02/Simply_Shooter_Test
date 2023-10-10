@@ -4,11 +4,11 @@ public class MissileController : ProjectileController
 {
     protected override void DealDamage()
     {
-        throw new System.NotImplementedException();
+        Debug.Log("Blast");
     }
 
     protected override void OnTriggerEnter(Collider other)
     {
-        throw new System.NotImplementedException();
+        DealDamage();
     }
 }
