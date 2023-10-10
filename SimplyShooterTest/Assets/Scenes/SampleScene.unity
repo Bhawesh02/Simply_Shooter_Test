@@ -1059,6 +1059,14 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3582554474214256717, guid: 6f6021a1e82d34ccc9c2915a06f788fc, type: 3}
+      propertyPath: NavMeshAgent
+      value: 
+      objectReference: {fileID: 1813452758}
+    - target: {fileID: 3582554474214256717, guid: 6f6021a1e82d34ccc9c2915a06f788fc, type: 3}
+      propertyPath: MovementJoystick
+      value: 
+      objectReference: {fileID: 312214215}
+    - target: {fileID: 3582554474214256717, guid: 6f6021a1e82d34ccc9c2915a06f788fc, type: 3}
       propertyPath: movementJoystick
       value: 
       objectReference: {fileID: 312214215}
@@ -1166,6 +1174,11 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 43972122}
   m_SourcePrefab: {fileID: 100100000, guid: 22ac009acbc9d41eab7b17d04213de69, type: 3}
+--- !u!195 &1813452758 stripped
+NavMeshAgent:
+  m_CorrespondingSourceObject: {fileID: 5508961813236477470, guid: 6f6021a1e82d34ccc9c2915a06f788fc, type: 3}
+  m_PrefabInstance: {fileID: 1197946651}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1845778501
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -1,16 +1,19 @@
 
-using System;
 using UnityEngine;
-using UnityEngine.InputSystem.EnhancedTouch;
 
 public class PlayerController
 {
     private Vector2 movementAmount;
-    public void SpawnJoystick(Finger movementFinger, JoystickController joystick)
+    private PlayerView playerView;
+    public PlayerController(PlayerView view)
+    {
+        playerView = view;
+    }
+    public void SpawnJoystick()
     {
         movementAmount = Vector2.zero;
-        joystick.gameObject.SetActive(true);
-        joystick.JoystickRectTransform.anchoredPosition = ClampPostion(movementFinger.screenPosition, joystick);
+        playerView.MovementJoystick.gameObject.SetActive(true);
+        playerView.MovementJoystick.JoystickRectTransform.anchoredPosition = ClampPostion(playerView.MovementFinger.screenPosition, playerView.MovementJoystick);
     }
 
     private Vector2 ClampPostion(Vector2 startPosition, JoystickController joystick)
@@ -39,5 +42,12 @@ public class PlayerController
     public void SetMovementAmount(Vector2 movAmt)
     {
         movementAmount = movAmt;
+    }
+
+    public void MovePlayer()
+    {
+        Vector3 scaledMovement = playerView.NavMeshAgent.speed * Time.deltaTime * new Vector3(movementAmount.x,0,movementAmount.y);
+        playerView.transform.LookAt(playerView.transform.position + scaledMovement,Vector3.up);
+        playerView.NavMeshAgent.Move(scaledMovement);
     }
 }

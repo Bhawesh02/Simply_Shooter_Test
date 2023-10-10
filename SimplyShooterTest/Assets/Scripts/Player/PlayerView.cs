@@ -8,15 +8,13 @@ using ETouch = UnityEngine.InputSystem.EnhancedTouch;
 
 public class PlayerView : MonoBehaviour
 {
-    [SerializeField]
-    private JoystickController movementJoystick;
-    [SerializeField]
-    private NavMeshAgent navMeshAgent;
-    private Finger movementFinger;
+    public JoystickController MovementJoystick;
+    public NavMeshAgent NavMeshAgent;
+    public Finger MovementFinger;
     private PlayerController playerController;
     private void Awake()
     {
-        playerController = new();
+        playerController = new(this);
     }
     private void OnEnable()
     {
@@ -34,26 +32,29 @@ public class PlayerView : MonoBehaviour
     }
     private void HandelFingerDown(Finger fingerDown)
     {
-        if (movementFinger != null)
+        if (MovementFinger != null)
             return;
-        movementFinger = fingerDown;
-        playerController.SpawnJoystick(movementFinger,movementJoystick);
+        MovementFinger = fingerDown;
+        playerController.SpawnJoystick();
     }
     private void HandelFingerMove(Finger fingerMoved)
     {
-        if(fingerMoved!=movementFinger) return;
-        movementJoystick.SetKnobPositionToTouch(fingerMoved);
-        playerController.SetMovementAmount(movementJoystick.GetMovementAmount());
+        if(fingerMoved!=MovementFinger) return;
+        MovementJoystick.SetKnobPositionToTouch(fingerMoved);
+        playerController.SetMovementAmount(MovementJoystick.GetMovementAmount());
     }
     private void HandelFingerUp(Finger lostFinger)
     {
-        if(lostFinger!=movementFinger) return;
-        movementFinger = null;
-        movementJoystick.ResetJoystick();
+        if(lostFinger!=MovementFinger) return;
+        MovementFinger = null;
+        MovementJoystick.ResetJoystick();
         playerController.SetMovementAmount(Vector2.zero);
     }
 
-    
+    private void Update()
+    {
+        playerController.MovePlayer();
+    }
 
-    
+
 }
