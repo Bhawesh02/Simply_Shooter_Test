@@ -9,6 +9,9 @@ public class BulletController : ProjectileController
 
     protected override void OnTriggerEnter(Collider other)
     {
+        if(other.GetComponent<ProjectileController>() != null) {
+            return;
+        }
         EnemyView enemy = other.GetComponent<EnemyView>();
         if (enemy!=null)
         {

@@ -7,7 +7,6 @@ public class PickupWeaponController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log(weaponData.WeaponType);
         PlayerView player = other.gameObject.transform.root.GetComponent<PlayerView>();
         if (player == null)
             return;
