@@ -129,6 +129,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1706819257632223712}
   - component: {fileID: 8372055418590489768}
+  - component: {fileID: 2113698676482435514}
   m_Layer: 0
   m_Name: Launcher
   m_TagString: Untagged
@@ -175,6 +176,19 @@ CapsuleCollider:
   m_Height: 1.96
   m_Direction: 2
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &2113698676482435514
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2719731732415758577}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b934f270e3463284c8b07434a947d192, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponData: {fileID: 11400000, guid: c8952a24f57241147968d7335cd2f8d6, type: 2}
 --- !u!1 &3092566749583854886
 GameObject:
   m_ObjectHideFlags: 0
