@@ -1058,56 +1058,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1284599364733565364, guid: 6f6021a1e82d34ccc9c2915a06f788fc, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3582554474214256717, guid: 6f6021a1e82d34ccc9c2915a06f788fc, type: 3}
-      propertyPath: AttackRange
-      value: 4.41
-      objectReference: {fileID: 0}
-    - target: {fileID: 3582554474214256717, guid: 6f6021a1e82d34ccc9c2915a06f788fc, type: 3}
-      propertyPath: startWeapon
-      value: 
-      objectReference: {fileID: 11400000, guid: 1f5e26d815dd7df4b95c82d480852e19, type: 2}
-    - target: {fileID: 3582554474214256717, guid: 6f6021a1e82d34ccc9c2915a06f788fc, type: 3}
-      propertyPath: NavMeshAgent
-      value: 
-      objectReference: {fileID: 1813452758}
-    - target: {fileID: 3582554474214256717, guid: 6f6021a1e82d34ccc9c2915a06f788fc, type: 3}
-      propertyPath: MovementJoystick
-      value: 
-      objectReference: {fileID: 312214215}
-    - target: {fileID: 3582554474214256717, guid: 6f6021a1e82d34ccc9c2915a06f788fc, type: 3}
-      propertyPath: movementJoystick
-      value: 
-      objectReference: {fileID: 312214215}
-    - target: {fileID: 3582554474214256717, guid: 6f6021a1e82d34ccc9c2915a06f788fc, type: 3}
-      propertyPath: EnemyLayer.m_Bits
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 3582554474214256717, guid: 6f6021a1e82d34ccc9c2915a06f788fc, type: 3}
-      propertyPath: WeaponContainer.PistolContainer
-      value: 
-      objectReference: {fileID: 1197946655}
-    - target: {fileID: 3582554474214256717, guid: 6f6021a1e82d34ccc9c2915a06f788fc, type: 3}
-      propertyPath: WeaponContainer.ShotgunContainer
-      value: 
-      objectReference: {fileID: 1197946654}
-    - target: {fileID: 3582554474214256717, guid: 6f6021a1e82d34ccc9c2915a06f788fc, type: 3}
-      propertyPath: WeaponContainer.LauncherContainer
-      value: 
-      objectReference: {fileID: 1197946652}
-    - target: {fileID: 3582554474214256717, guid: 6f6021a1e82d34ccc9c2915a06f788fc, type: 3}
-      propertyPath: WeaponContainer.MachinegunContainer
-      value: 
-      objectReference: {fileID: 1197946653}
     - target: {fileID: 5947256146199843476, guid: 6f6021a1e82d34ccc9c2915a06f788fc, type: 3}
       propertyPath: m_Name
-      value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 5947256146199843476, guid: 6f6021a1e82d34ccc9c2915a06f788fc, type: 3}
-      propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -1115,26 +1067,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6f6021a1e82d34ccc9c2915a06f788fc, type: 3}
---- !u!1 &1197946652 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7475144629504641307, guid: 6f6021a1e82d34ccc9c2915a06f788fc, type: 3}
-  m_PrefabInstance: {fileID: 1197946651}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &1197946653 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8833603935719772408, guid: 6f6021a1e82d34ccc9c2915a06f788fc, type: 3}
-  m_PrefabInstance: {fileID: 1197946651}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &1197946654 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1454180656483217223, guid: 6f6021a1e82d34ccc9c2915a06f788fc, type: 3}
-  m_PrefabInstance: {fileID: 1197946651}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &1197946655 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1284599364733565364, guid: 6f6021a1e82d34ccc9c2915a06f788fc, type: 3}
-  m_PrefabInstance: {fileID: 1197946651}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1261901626 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5008381990371707673, guid: af287a0fc91314bc385278430e54b910, type: 3}
@@ -1275,11 +1207,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MovementJoystick: {fileID: 312214215}
---- !u!195 &1813452758 stripped
-NavMeshAgent:
-  m_CorrespondingSourceObject: {fileID: 5508961813236477470, guid: 6f6021a1e82d34ccc9c2915a06f788fc, type: 3}
-  m_PrefabInstance: {fileID: 1197946651}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1845778501
 PrefabInstance:
   m_ObjectHideFlags: 0
