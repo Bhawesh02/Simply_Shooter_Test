@@ -1,5 +1,7 @@
 
 using UnityEngine;
+using UnityEngine.InputSystem.EnhancedTouch;
+using ETouch = UnityEngine.InputSystem.EnhancedTouch;
 using UnityEngine.UI;
 
 public class JoystickController : MonoBehaviour
@@ -12,5 +14,9 @@ public class JoystickController : MonoBehaviour
     private void Awake()
     {
         JoystickRectTransform  = GetComponent<RectTransform>();
+    }
+    public void SetKnobPosition(Finger finger)
+    {
+
     }
 }
