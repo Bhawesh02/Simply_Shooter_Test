@@ -1,6 +1,5 @@
 
 using System;
-using UnityEngine;
 
 public class EventService : GenericSingleton<EventService>
 {
