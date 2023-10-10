@@ -95,6 +95,10 @@ public class PlayerController
     }
     private void ShootAtEnemy()
     {
+        //Based On Gun get projectile
 
+        //Spawn Projectile little far from gun
+
+        //make it fly towards enemy - projectile controller
     }
 }
