@@ -1,18 +1,14 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class BulletController : MonoBehaviour
+public class BulletController : ProjectileController
 {
-    // Start is called before the first frame update
-    void Start()
+    protected override void DealDamage()
     {
-        
+        throw new System.NotImplementedException();
     }
 
-    // Update is called once per frame
-    void Update()
+    protected override void OnTriggerEnter(Collider other)
     {
-        
+        throw new System.NotImplementedException();
     }
 }

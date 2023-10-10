@@ -9,12 +9,14 @@ public class PlayerController
     private PlayerView playerView;
     private PlayerModel playerModel;
     private float nextEnemyDetectionTime;
+    private float nextEnemyShootTime;
 
     public PlayerController(PlayerView view)
     {
         playerView = view;
         playerModel = new();
         nextEnemyDetectionTime = Time.time;
+        nextEnemyShootTime = Time.time;
     }
 
     public void SetMovementAmount(Vector2 movAmt)
@@ -65,14 +67,19 @@ public class PlayerController
 
     public void EnemyFightAI()
     {
-        if (Time.time < nextEnemyDetectionTime)
-        { return; }
-        nextEnemyDetectionTime = Time.time + playerModel.EnemyDetectionDelay;
-        DetectEnemy();
+        if (Time.time >= nextEnemyDetectionTime)
+        {
+            DetectEnemy();
+            nextEnemyDetectionTime = Time.time + playerModel.EnemyDetectionDelay;
+        }
         if (playerModel.Enemy == null)
             return;
         AimAtEnemy();
-        ShootAtEnemy();
+        if (Time.time >= nextEnemyShootTime)
+        {
+            ShootAtEnemy();
+            nextEnemyShootTime = Time.time + (60f/playerModel.FireRate)/60f;
+        }
     }
 
     
@@ -83,6 +90,7 @@ public class PlayerController
         if (enemyColliders.Length == 0)
         {
             playerModel.Enemy = null;
+            return;
         }
         playerModel.Enemy = enemyColliders[0].GetComponentInParent<EnemyView>();
     }
@@ -95,10 +103,15 @@ public class PlayerController
     }
     private void ShootAtEnemy()
     {
-        //Based On Gun get projectile
-
-        //Spawn Projectile little far from gun
-
-        //make it fly towards enemy - projectile controller
+        ProjectileController projectile;
+        if (playerModel.CurrentWeapon == WeaponTypes.Launcher)
+            projectile = ProjectileService.Instance.GetMissile();
+        else
+            projectile = ProjectileService.Instance.GetBullet();
+        projectile.SetEnemtTransform(playerModel.Enemy.gameObject.transform);
+        Transform spawnPoint = playerModel.CurrentWeaponContainer.transform.GetChild(1).transform;
+        projectile.transform.SetPositionAndRotation(spawnPoint.position, spawnPoint.rotation);
+        projectile.gameObject.SetActive(true);
+        projectile.Fly();
     }
 }
