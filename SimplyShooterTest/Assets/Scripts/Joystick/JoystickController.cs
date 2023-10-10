@@ -2,7 +2,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem.EnhancedTouch;
 using ETouch = UnityEngine.InputSystem.EnhancedTouch;
-using UnityEngine.UI;
 
 public class JoystickController : MonoBehaviour
 {
