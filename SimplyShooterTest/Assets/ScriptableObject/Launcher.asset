@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d41bf4723379154a8048aaecb2c33e5, type: 3}
   m_Name: Launcher
   m_EditorClassIdentifier: 
-  WeaponType: 0
-  AttackRange: 0
-  FireRate: 0
+  WeaponType: 3
+  AttackRange: 20
+  FireRate: 1

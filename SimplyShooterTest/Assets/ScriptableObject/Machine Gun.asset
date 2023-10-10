@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Machine Gun
   m_EditorClassIdentifier: 
   WeaponType: 0
-  AttackRange: 0
-  FireRate: 0
+  AttackRange: 10
+  FireRate: 10
