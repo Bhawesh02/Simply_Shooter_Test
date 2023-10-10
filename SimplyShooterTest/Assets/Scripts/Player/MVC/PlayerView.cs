@@ -12,10 +12,8 @@ public class PlayerView : MonoBehaviour
 
     public WeaponScritableObject startWeapon;
     public LayerMask EnemyLayer;
-    public float EnemyDetectionDelay = 0.1f;
     public EnemyView Enemy;
 
-    private float nextEnemyDetectionTime;
 
     public WeaponContainer WeaponContainer;
 
@@ -36,17 +34,12 @@ public class PlayerView : MonoBehaviour
     }
     private void Start()
     {
-        nextEnemyDetectionTime = Time.time;
         PlayerController.ChangeWeapon(startWeapon);
     }
     private void Update()
     {
         PlayerController.MovePlayer();
-        if(Time.time >= nextEnemyDetectionTime)
-        {
-            PlayerController.DetectEnemy();
-            nextEnemyDetectionTime = Time.time + EnemyDetectionDelay;
-        }
+        PlayerController.EnemyFightAI();
     }
 
 }
