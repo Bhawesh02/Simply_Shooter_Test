@@ -17,6 +17,8 @@ public class PlayerController
 
     public void MovePlayer()
     {
+        if (movementAmount == Vector2.zero)
+            return;
         Vector3 scaledMovement = playerView.NavMeshAgent.speed * Time.deltaTime * new Vector3(movementAmount.x,0,movementAmount.y);
         playerView.transform.LookAt(playerView.transform.position + scaledMovement,Vector3.up);
         playerView.NavMeshAgent.Move(scaledMovement);

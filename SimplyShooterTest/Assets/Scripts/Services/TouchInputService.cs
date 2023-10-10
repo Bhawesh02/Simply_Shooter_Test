@@ -34,6 +34,7 @@ public class TouchInputService : MonoGenericSingelton<TouchInputService>
     {
         if (fingerMoved != MovementFinger) return;
         MovementJoystick.SetKnobPositionToTouch(fingerMoved);
+
     }
     private void HandelFingerUp(Finger lostFinger)
     {

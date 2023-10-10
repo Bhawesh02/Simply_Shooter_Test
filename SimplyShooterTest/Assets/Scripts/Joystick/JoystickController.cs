@@ -19,6 +19,14 @@ public class JoystickController : MonoBehaviour
         JoystickSize = JoystickRectTransform.sizeDelta;
         maxKnobMovement = JoystickSize.x / 2;
     }
+    private void OnEnable()
+    {
+        EventService.Instance.InvokeJoystickEnabled();
+    }
+    private void OnDisable()
+    {
+        EventService.Instance.InvokeJoystickDisabled();
+    }
     public void SetKnobPositionToTouch(Finger finger)
     {
         Vector2 knobPosittion;
@@ -32,6 +40,7 @@ public class JoystickController : MonoBehaviour
             knobPosittion = (cuurentTouch.screenPosition - JoystickRectTransform.anchoredPosition);
         }
         JoystickKnob.anchoredPosition = knobPosittion;
+        EventService.Instance.InvokeJoystickMoved(this);
     }
     public Vector2 GetMovementAmount()
     {
