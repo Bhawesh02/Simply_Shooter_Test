@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Missile
   m_EditorClassIdentifier: 
   ProjectileType: 0
-  Speed: 0
-  Damage: 0
-  HasAoeDamange: 0
-  AoeRange: 0
+  Speed: 6
+  Damage: 10
+  HasAoeDamange: 1
+  AoeRange: 2

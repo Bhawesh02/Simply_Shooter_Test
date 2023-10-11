@@ -73,7 +73,8 @@ GameObject:
   - component: {fileID: 139230755991082174}
   - component: {fileID: 5508961813236477470}
   - component: {fileID: 3582554474214256717}
-  m_Layer: 0
+  - component: {fileID: 26364969397479891}
+  m_Layer: 6
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: -5397416234189338067, guid: 0000000000000000d000000000000000, type: 0}
@@ -131,7 +132,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NavMeshAgent: {fileID: 5508961813236477470}
-  startWeapon: {fileID: 11400000, guid: 1f5e26d815dd7df4b95c82d480852e19, type: 2}
+  startWeapon: {fileID: 11400000, guid: c8952a24f57241147968d7335cd2f8d6, type: 2}
   EnemyLayer:
     serializedVersion: 2
     m_Bits: 8
@@ -141,6 +142,29 @@ MonoBehaviour:
     ShotgunContainer: {fileID: 1454180656483217223}
     MachinegunContainer: {fileID: 8833603935719772408}
     LauncherContainer: {fileID: 7475144629504641307}
+--- !u!136 &26364969397479891
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5947256146199843476}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.3056355
+  m_Height: 1.4035358
+  m_Direction: 1
+  m_Center: {x: -0.020139217, y: 1.2032666, z: 0.018433094}
 --- !u!1 &6989312110146903976
 GameObject:
   m_ObjectHideFlags: 0
