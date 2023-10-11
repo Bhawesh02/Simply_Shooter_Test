@@ -716,17 +716,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
---- !u!114 &759178276 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3582554474214256717, guid: 6f6021a1e82d34ccc9c2915a06f788fc, type: 3}
-  m_PrefabInstance: {fileID: 1197946651}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2aa69f013e620e34c9bad668dcb7e3ad, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &822552249
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1341,10 +1330,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 3670252870641501700, guid: dfd1f306f82b944828f7a995c92080af, type: 3}
-      propertyPath: m_Layer
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4304337604277025948, guid: dfd1f306f82b944828f7a995c92080af, type: 3}
       propertyPath: m_Name
       value: Enemy
@@ -1390,9 +1375,9 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8020952031841274186, guid: dfd1f306f82b944828f7a995c92080af, type: 3}
-      propertyPath: Player
+      propertyPath: MainCamera
       value: 
-      objectReference: {fileID: 759178276}
+      objectReference: {fileID: 963194227}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

@@ -1,6 +1,7 @@
-using System.Collections;
+
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 [RequireComponent(typeof(NavMeshAgent),typeof(EnemyChaseState),typeof(EnemyPetrolState))]
 public class EnemyView : MonoBehaviour
 {
@@ -10,7 +11,8 @@ public class EnemyView : MonoBehaviour
     public EnemyPetrolState EnemyPetrolState { get; private set; }
     public NavMeshAgent NavMeshAgent { get; private set; }
     public EnemyStates StartState;
-
+    public Image HealthBarForground;
+    public Camera MainCamera;
     private void Awake()
     {
         EnemyController = new(this, EnemyScriptableObject);
@@ -23,7 +25,10 @@ public class EnemyView : MonoBehaviour
     {
         EnemyController.ChangeState(StartState);
     }
-    
+    private void Update()
+    {
+        HealthBarForground.transform.rotation = Quaternion.LookRotation(HealthBarForground.transform.position - MainCamera.transform.position);
+    }
     private void OnDrawGizmos()
     {
         if (!Application.isPlaying)
