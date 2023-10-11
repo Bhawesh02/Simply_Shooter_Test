@@ -11,6 +11,7 @@ public abstract class ProjectileController : MonoBehaviour
     private Transform EnemyTransform = null;
     protected Coroutine AutoReturn;
     protected float NotCollidedWaitTime = 10f;
+    public WeaponScritableObject WeponFired;
     private void Awake()
     {
         rigidbody = GetComponent<Rigidbody>();
@@ -28,6 +29,11 @@ public abstract class ProjectileController : MonoBehaviour
         Vector3 direction = (EnemyTransform.position - transform.position).normalized;
         direction.y = 0;
         rigidbody.velocity =  projectileData.Speed * direction;
+    }
+
+    public void SetWeaponFired(WeaponScritableObject weapon)
+    {
+        WeponFired = weapon;
     }
     protected virtual void OnDisable()
     {

@@ -7,7 +7,6 @@ public class ProjectileScriptableObject : ScriptableObject
 {
     public ProjectileType ProjectileType;
     public float Speed;
-    public float Damage;
     public bool HasAoeDamange;
     [HideInInspector]
     public float AoeRange;
