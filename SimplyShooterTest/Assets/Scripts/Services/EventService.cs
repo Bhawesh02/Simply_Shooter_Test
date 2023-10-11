@@ -9,6 +9,7 @@ public class EventService : GenericSingleton<EventService>
     public event Action<WeaponScritableObject> WeaponPickedUp;
     public event Action<EnemyScriptableObject> EnemyDataChanged;
     public event Action<EnemyView, float> EnemyDamaged;
+    public event Action CoinCollected;
     public void InvokeJoystickEnabled()
     {
         JoystickEnabled?.Invoke();
@@ -32,5 +33,9 @@ public class EventService : GenericSingleton<EventService>
     public void InvokeEnemyDamaged(EnemyView enemy,float damage)
     {
         EnemyDamaged?.Invoke(enemy, damage);
+    }
+    public void InvokeCoinCollected()
+    {
+        CoinCollected?.Invoke();
     }
 }
