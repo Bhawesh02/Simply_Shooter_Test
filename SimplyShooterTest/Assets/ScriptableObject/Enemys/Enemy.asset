@@ -14,7 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Health: 20
   PetrolRadius: 3
-  PetrolPointSwitchDelay: 0.2
+  PetrolPointSwitchDelay: 2
   PetrolSpeed: 2
-  ChaseRadius: 5
+  ChaseRadius: 7
   ChaseSpeed: 3
+  PlayerDetectionDelay: 0.5
+  PlayerPositionChangeDelay: 0.5
+  PlayerLayerMask:
+    serializedVersion: 2
+    m_Bits: 64

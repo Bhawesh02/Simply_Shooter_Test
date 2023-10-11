@@ -11,9 +11,9 @@ public class EnemyStates : MonoBehaviour
     {
         EnemyView = GetComponent<EnemyView>();
     }
-    protected virtual void Start()
+    private void OnEnable()
     {
-        EnemyController = EnemyView.EnemyController;
+        EnemyController ??= EnemyView.EnemyController;
     }
 
     public virtual void OnStateEnter()

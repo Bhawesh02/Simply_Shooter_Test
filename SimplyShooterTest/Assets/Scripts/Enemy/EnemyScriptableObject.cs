@@ -10,6 +10,9 @@ public class EnemyScriptableObject : ScriptableObject
     public float PetrolSpeed;
     public float ChaseRadius;
     public float ChaseSpeed;
+    public float PlayerDetectionDelay;
+    public float PlayerPositionChangeDelay;
+    public LayerMask PlayerLayerMask;
 
     private void OnValidate()
     {

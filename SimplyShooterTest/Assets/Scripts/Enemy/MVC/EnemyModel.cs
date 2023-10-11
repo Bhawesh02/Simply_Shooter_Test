@@ -1,6 +1,7 @@
 
 
 using System;
+using UnityEngine;
 
 public class EnemyModel 
 {
@@ -10,7 +11,11 @@ public class EnemyModel
     public float PetrolSpeed;
     public float ChaseRadius;
     public float ChaseSpeed;
+    public float PlayerDetectionDelay;
+    public float PlayerPositionChangeDelay;
+    public LayerMask PlayerLayerMask;
     public EnemyStates CurrentEnemyState;
+    public PlayerView Player;
     public EnemyModel(EnemyScriptableObject enemyScriptableObject)
     {
         SetData(enemyScriptableObject);
@@ -24,5 +29,8 @@ public class EnemyModel
         PetrolSpeed = enemyScriptableObject.PetrolSpeed;
         ChaseRadius = enemyScriptableObject.ChaseRadius;
         ChaseSpeed = enemyScriptableObject.ChaseSpeed;
+        PlayerDetectionDelay = enemyScriptableObject.PlayerDetectionDelay;
+        PlayerPositionChangeDelay = enemyScriptableObject.PlayerPositionChangeDelay;
+        PlayerLayerMask = enemyScriptableObject.PlayerLayerMask;
     }
 }
