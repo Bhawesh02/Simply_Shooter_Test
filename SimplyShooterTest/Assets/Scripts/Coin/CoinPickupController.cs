@@ -1,18 +1,21 @@
-using System.Collections;
-using System.Collections.Generic;
+
 using UnityEngine;
 
 public class CoinPickupController : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
+    [SerializeField]
+    private float rotationSpeed;
+    
+    
     void Update()
     {
-        
+        transform.Rotate(rotationSpeed * Time.deltaTime * Vector3.up);       
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.GetComponent<PlayerView>() == null)
+            return;
+        EventService.Instance.InvokeCoinCollected(this);
+
     }
 }
