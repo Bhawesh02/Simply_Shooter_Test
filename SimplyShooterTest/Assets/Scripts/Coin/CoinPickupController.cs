@@ -5,6 +5,8 @@ public class CoinPickupController : MonoBehaviour
 {
     [SerializeField]
     private float rotationSpeed;
+    
+    
     void Update()
     {
         transform.Rotate(rotationSpeed * Time.deltaTime * Vector3.up);       
@@ -13,6 +15,7 @@ public class CoinPickupController : MonoBehaviour
     {
         if (other.gameObject.GetComponent<PlayerView>() == null)
             return;
-        EventService.Instance.InvokeCoinCollected();
+        EventService.Instance.InvokeCoinCollected(this);
+
     }
 }
