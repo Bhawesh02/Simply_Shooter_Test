@@ -5718,6 +5718,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EnemyScriptableObject: {fileID: 11400000, guid: 556db7b3b6c421c40902d00ad95dd7f8, type: 2}
   StartState: {fileID: 8299885462897821947}
+  HealthBarCanvas: {fileID: 9147959553931747394}
   HealthBarForground: {fileID: 2310749667074705349}
   MainCamera: {fileID: 0}
 --- !u!1 &4322466370323167849

@@ -11,6 +11,7 @@ public class EnemyView : MonoBehaviour
     public EnemyPetrolState EnemyPetrolState { get; private set; }
     public NavMeshAgent NavMeshAgent { get; private set; }
     public EnemyStates StartState;
+    public Canvas HealthBarCanvas;
     public Image HealthBarForground;
     public Camera MainCamera;
     private void Awake()
@@ -27,7 +28,7 @@ public class EnemyView : MonoBehaviour
     }
     private void Update()
     {
-        HealthBarForground.transform.rotation = Quaternion.LookRotation(HealthBarForground.transform.position - MainCamera.transform.position);
+        HealthBarCanvas.transform.rotation = Quaternion.LookRotation(HealthBarForground.transform.position - MainCamera.transform.position);
     }
     private void OnDrawGizmos()
     {
