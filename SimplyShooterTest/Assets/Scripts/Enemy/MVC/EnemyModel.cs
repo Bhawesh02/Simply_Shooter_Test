@@ -10,7 +10,7 @@ public class EnemyModel
     public float PetrolSpeed;
     public float ChaseRadius;
     public float ChaseSpeed;
-
+    public EnemyStates CurrentEnemyState;
     public EnemyModel(EnemyScriptableObject enemyScriptableObject)
     {
         SetData(enemyScriptableObject);

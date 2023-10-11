@@ -20,12 +20,18 @@ public class EnemyController
     
     private void RefreshData(EnemyScriptableObject enemyData)
     {
-        if(enemyData == enemyView.enemyScriptableObject)
+        if(enemyData == enemyView.EnemyScriptableObject)
         {
             enemyModel.SetData(enemyData);
         }
     }
 
+    public void ChangeState(EnemyStates newState)
+    {
+        enemyModel.CurrentEnemyState?.OnStateExit();
+        enemyModel.CurrentEnemyState = newState;
+        enemyModel.CurrentEnemyState.OnStateEnter();
+    }
     public void DrawPetrolGizmos()
     {
         

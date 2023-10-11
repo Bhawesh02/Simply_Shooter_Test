@@ -2,11 +2,20 @@ using UnityEngine;
 
 public class EnemyView : MonoBehaviour
 {
-    public EnemyController enemyController;
-    public EnemyScriptableObject enemyScriptableObject;
+    public EnemyController EnemyController;
+    public EnemyScriptableObject EnemyScriptableObject;
+
+    
+    public EnemyStates StartState;
+
     private void Awake()
     {
-        enemyController = new(this, enemyScriptableObject);
+        EnemyController = new(this, EnemyScriptableObject);
+    }
+
+    private void Start()
+    {
+        EnemyController.ChangeState(StartState);
     }
 
     private void OnDrawGizmos()
@@ -15,6 +24,8 @@ public class EnemyView : MonoBehaviour
         {
             return;
         }
-        enemyController.DrawPetrolGizmos();
+        EnemyController.DrawPetrolGizmos();
     }
+
+
 }
