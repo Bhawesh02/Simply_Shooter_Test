@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class MissileController : ProjectileController
@@ -14,6 +15,12 @@ public class MissileController : ProjectileController
             return;
         }
         DealDamage();
+        ProjectileService.Instance.ReturnMissile(this);
+    }
+
+    protected override IEnumerator ReturnIfNotCollided()
+    {
+        yield return new WaitForSeconds(NotCollidedWaitTime);
         ProjectileService.Instance.ReturnMissile(this);
     }
 }

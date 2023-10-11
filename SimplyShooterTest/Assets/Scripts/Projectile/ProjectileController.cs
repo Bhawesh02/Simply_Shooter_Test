@@ -1,4 +1,5 @@
 
+using System.Collections;
 using UnityEngine;
 
 public abstract class ProjectileController : MonoBehaviour
@@ -8,6 +9,8 @@ public abstract class ProjectileController : MonoBehaviour
 
     private new Rigidbody rigidbody;
     private Transform EnemyTransform = null;
+    protected Coroutine AutoReturn;
+    protected float NotCollidedWaitTime = 10f;
     private void Awake()
     {
         rigidbody = GetComponent<Rigidbody>();
@@ -16,16 +19,23 @@ public abstract class ProjectileController : MonoBehaviour
     {
         EnemyTransform = transform;
     }
+    private void OnEnable()
+    {
+        AutoReturn = StartCoroutine(ReturnIfNotCollided());
+    }
     public void Fly()
     {
         Vector3 direction = (EnemyTransform.position - transform.position).normalized;
         direction.y = 0;
         rigidbody.velocity =  projectileData.Speed * direction;
     }
-    private void OnDisable()
+    protected virtual void OnDisable()
     {
         rigidbody.velocity = Vector3.zero;
+        StopCoroutine(AutoReturn);
     }
+
+    protected abstract IEnumerator ReturnIfNotCollided();
     protected abstract void OnTriggerEnter(Collider other);
     protected abstract void DealDamage();
 }
