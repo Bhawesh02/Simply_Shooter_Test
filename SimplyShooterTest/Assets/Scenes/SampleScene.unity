@@ -1029,6 +1029,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 26364969397479891, guid: 6f6021a1e82d34ccc9c2915a06f788fc, type: 3}
+      propertyPath: m_Radius
+      value: 0.3056355
+      objectReference: {fileID: 0}
+    - target: {fileID: 26364969397479891, guid: 6f6021a1e82d34ccc9c2915a06f788fc, type: 3}
+      propertyPath: m_Center.z
+      value: 0.018433094
+      objectReference: {fileID: 0}
     - target: {fileID: 139230755991082174, guid: 6f6021a1e82d34ccc9c2915a06f788fc, type: 3}
       propertyPath: m_LocalPosition.x
       value: 10.36
@@ -1069,10 +1077,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3582554474214256717, guid: 6f6021a1e82d34ccc9c2915a06f788fc, type: 3}
-      propertyPath: startWeapon
-      value: 
-      objectReference: {fileID: 11400000, guid: c8952a24f57241147968d7335cd2f8d6, type: 2}
     - target: {fileID: 5947256146199843476, guid: 6f6021a1e82d34ccc9c2915a06f788fc, type: 3}
       propertyPath: m_Name
       value: Player
