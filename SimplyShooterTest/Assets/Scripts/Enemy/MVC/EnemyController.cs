@@ -18,13 +18,19 @@ public class EnemyController
         EnemyModel = new(enemyScriptableObject);
         EventService.Instance.EnemyDataChanged += RefreshData;
         PlayerDetectionCorotine = enemyView.StartCoroutine(PlayerDetectStart());
-    }
-    ~EnemyController()
-    {
-        EventService.Instance.EnemyDataChanged -= RefreshData;
+        EventService.Instance.EnemyDamaged += TakeDamage;
     }
 
     
+
+    ~EnemyController()
+    {
+        EventService.Instance.EnemyDataChanged -= RefreshData;
+        EventService.Instance.EnemyDamaged -= TakeDamage;
+
+    }
+
+
     private void RefreshData(EnemyScriptableObject enemyData)
     {
         if(enemyData == enemyView.EnemyScriptableObject)
@@ -77,6 +83,21 @@ public class EnemyController
         }
         EnemyModel.Player = playerCollider[0].gameObject.GetComponent<PlayerView>();
         ChangeState(enemyView.EnemyChaseState);
+    }
+    private void TakeDamage(EnemyView view, float damage)
+    {
+        if (view != enemyView)
+            return;
+        EnemyModel.CurrentHealth -= damage;
+        if(EnemyModel.CurrentHealth <= 0)
+        {
+            EnemyDead();
+        }
+    }
+
+    private void EnemyDead()
+    {
+        GameObject.Destroy(enemyView.gameObject);
     }
 
     public void DrawGizmos()

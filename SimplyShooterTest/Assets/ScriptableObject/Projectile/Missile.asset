@@ -12,8 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aea55b96635063a4784b822dba716328, type: 3}
   m_Name: Missile
   m_EditorClassIdentifier: 
-  ProjectileType: 0
+  ProjectileType: 1
   Speed: 6
-  Damage: 10
   HasAoeDamange: 1
   AoeRange: 2

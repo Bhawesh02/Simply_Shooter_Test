@@ -5,7 +5,8 @@ using UnityEngine;
 
 public class EnemyModel 
 {
-    public int Health;
+    public float Health;
+    public float CurrentHealth;
     public float PetrolRadius;
     public float PetrolPointSwitchDelay;
     public float PetrolSpeed;
@@ -23,7 +24,7 @@ public class EnemyModel
 
     public void SetData(EnemyScriptableObject enemyScriptableObject)
     {
-        Health = enemyScriptableObject.Health;
+        CurrentHealth = Health = enemyScriptableObject.Health;
         PetrolRadius = enemyScriptableObject.PetrolRadius;
         PetrolPointSwitchDelay = enemyScriptableObject.PetrolPointSwitchDelay;
         PetrolSpeed = enemyScriptableObject.PetrolSpeed;

@@ -16,3 +16,4 @@ MonoBehaviour:
   AttackRange: 5
   FireRate: 2
   ProjectileType: 0
+  Damage: 3

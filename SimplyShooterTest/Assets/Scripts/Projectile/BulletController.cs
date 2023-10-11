@@ -5,6 +5,7 @@ public class BulletController : ProjectileController
 {
     [SerializeField]
     private TrailRenderer trailRenderer;
+    private EnemyView enemy;
 
     protected override void OnDisable()
     {
@@ -13,7 +14,7 @@ public class BulletController : ProjectileController
     }
     protected override void DealDamage()
     {
-        Debug.Log("Deal Damage to enemy");
+        EventService.Instance.InvokeEnemyDamaged(enemy,Damage);
     }
 
     protected override void OnTriggerEnter(Collider other)
@@ -21,7 +22,7 @@ public class BulletController : ProjectileController
         if(other.GetComponent<ProjectileController>() != null) {
             return;
         }
-        EnemyView enemy = other.GetComponent<EnemyView>();
+        enemy = other.GetComponent<EnemyView>();
         if (enemy!=null)
         {
             DealDamage();

@@ -5,12 +5,13 @@ using UnityEngine;
 public abstract class ProjectileController : MonoBehaviour
 {
     [SerializeField]
-    private ProjectileScriptableObject projectileData;
+    protected ProjectileScriptableObject projectileData;
 
     private new Rigidbody rigidbody;
     private Transform EnemyTransform = null;
     protected Coroutine AutoReturn;
     protected float NotCollidedWaitTime = 10f;
+    public float Damage { get;private set; }
     private void Awake()
     {
         rigidbody = GetComponent<Rigidbody>();
@@ -28,6 +29,11 @@ public abstract class ProjectileController : MonoBehaviour
         Vector3 direction = (EnemyTransform.position - transform.position).normalized;
         direction.y = 0;
         rigidbody.velocity =  projectileData.Speed * direction;
+    }
+
+    public void SetDamage(float damageAmt)
+    {
+        Damage = damageAmt;
     }
     protected virtual void OnDisable()
     {
