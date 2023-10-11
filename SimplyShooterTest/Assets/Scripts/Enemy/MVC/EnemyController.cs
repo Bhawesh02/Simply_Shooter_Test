@@ -89,10 +89,16 @@ public class EnemyController
         if (view != enemyView)
             return;
         EnemyModel.CurrentHealth -= damage;
+        UpodateHealthBarAmt();
         if(EnemyModel.CurrentHealth <= 0)
         {
             EnemyDead();
         }
+    }
+
+    private void UpodateHealthBarAmt()
+    {
+        enemyView.HealthBarForground.fillAmount = EnemyModel.CurrentHealth/EnemyModel.Health;
     }
 
     private void EnemyDead()
