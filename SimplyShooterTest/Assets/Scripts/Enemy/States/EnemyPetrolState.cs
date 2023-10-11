@@ -9,11 +9,6 @@ public class EnemyPetrolState : EnemyStates
     public override void OnStateEnter()
     {
         base.OnStateEnter();
-        if(EnemyController == null)
-        {
-            Debug.LogError("EnemyController is null");
-            return;
-        }
         petrolCoroutine = StartCoroutine(GoToRandomPoint());
     }
     private IEnumerator GoToRandomPoint()

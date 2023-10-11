@@ -36,6 +36,8 @@ public class EnemyController
 
     public void ChangeState(EnemyStates newState)
     {
+        if (newState == EnemyModel.CurrentEnemyState)
+            return;
         EnemyModel.CurrentEnemyState?.OnStateExit();
         EnemyModel.CurrentEnemyState = newState;
         EnemyModel.CurrentEnemyState.OnStateEnter();
@@ -48,7 +50,7 @@ public class EnemyController
             enemyView.NavMeshAgent.speed = EnemyModel.ChaseSpeed;
     }
     public void GoToRandomPointOnNavMesh()
-    {
+    { 
         enemyView.NavMeshAgent.SetDestination(GetRandomPointOnNavMesh());
     }
 
