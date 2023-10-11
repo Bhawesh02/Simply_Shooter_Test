@@ -9,11 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aea55b96635063a4784b822dba716328, type: 3}
-  m_Name: Missile
+  m_Script: {fileID: 11500000, guid: 9db4c24722e986c4386ace80cb3313cd, type: 3}
+  m_Name: Enemy
   m_EditorClassIdentifier: 
-  ProjectileType: 0
-  Speed: 6
-  Damage: 10
-  HasAoeDamange: 1
-  AoeRange: 2
+  Health: 20
+  PetrolRadius: 3
+  PetrolPointSwitchDelay: 0.2
+  PetrolSpeed: 2
+  ChaseRadius: 5
+  ChaseSpeed: 3
