@@ -1,7 +1,16 @@
+using System.Collections;
 using UnityEngine;
 
 public class BulletController : ProjectileController
 {
+    [SerializeField]
+    private TrailRenderer trailRenderer;
+
+    protected override void OnDisable()
+    {
+        base.OnDisable();
+        trailRenderer.Clear();
+    }
     protected override void DealDamage()
     {
         Debug.Log("Deal Damage to enemy");
@@ -17,6 +26,12 @@ public class BulletController : ProjectileController
         {
             DealDamage();
         }
+        ProjectileService.Instance.ReturnBullet(this);
+    }
+
+    protected override IEnumerator ReturnIfNotCollided()
+    {
+        yield return new WaitForSeconds(NotCollidedWaitTime);
         ProjectileService.Instance.ReturnBullet(this);
     }
 }

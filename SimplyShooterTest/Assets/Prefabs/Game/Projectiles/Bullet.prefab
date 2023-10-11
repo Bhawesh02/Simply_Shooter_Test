@@ -245,6 +245,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   projectileData: {fileID: 11400000, guid: e15d606978fb890408ea89055e2a3bd0, type: 2}
+  trailRenderer: {fileID: 2435351980787593819}
 --- !u!1 &8510067604007957480
 GameObject:
   m_ObjectHideFlags: 0
