@@ -103,6 +103,7 @@ public class EnemyController
 
     private void EnemyDead()
     {
+        EventService.Instance.InokeEnemyDied(enemyView.transform);
         GameObject.Destroy(enemyView.gameObject);
     }
 
