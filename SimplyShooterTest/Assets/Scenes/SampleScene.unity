@@ -123,6 +123,17 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 23800000, guid: 64b126b6cec395d438ec344fba35b9db, type: 2}
+--- !u!114 &39748211 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8299885462897821947, guid: dfd1f306f82b944828f7a995c92080af, type: 3}
+  m_PrefabInstance: {fileID: 830759000132458811}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2bc794cb03239b943a7dd49cd125742b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &43972121 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2188436496473817356, guid: 22ac009acbc9d41eab7b17d04213de69, type: 3}
@@ -1326,6 +1337,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1488555444610541653, guid: dfd1f306f82b944828f7a995c92080af, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4304337604277025948, guid: dfd1f306f82b944828f7a995c92080af, type: 3}
       propertyPath: m_Name
       value: Enemy
@@ -1371,9 +1386,17 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8020952031841274186, guid: dfd1f306f82b944828f7a995c92080af, type: 3}
-      propertyPath: enemyScriptableObject
+      propertyPath: StartState
+      value: 
+      objectReference: {fileID: 39748211}
+    - target: {fileID: 8020952031841274186, guid: dfd1f306f82b944828f7a995c92080af, type: 3}
+      propertyPath: EnemyScriptableObject
       value: 
       objectReference: {fileID: 11400000, guid: 556db7b3b6c421c40902d00ad95dd7f8, type: 2}
+    - target: {fileID: 8299885462897821947, guid: dfd1f306f82b944828f7a995c92080af, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
