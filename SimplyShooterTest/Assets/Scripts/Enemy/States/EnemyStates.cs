@@ -19,6 +19,7 @@ public class EnemyStates : MonoBehaviour
     public virtual void OnStateEnter()
     {
         this.enabled = true;
+        EnemyController.ChangeSpeed();
     }
     public virtual void OnStateExit()
     {

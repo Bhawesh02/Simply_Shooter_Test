@@ -15,9 +15,9 @@ MonoBehaviour:
   Health: 20
   PetrolRadius: 3
   PetrolPointSwitchDelay: 2
-  PetrolSpeed: 2
+  PetrolSpeed: 1
   ChaseRadius: 7
-  ChaseSpeed: 3
+  ChaseSpeed: 2
   PlayerDetectionDelay: 0.5
   PlayerPositionChangeDelay: 0.5
   PlayerLayerMask:

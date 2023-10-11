@@ -40,6 +40,13 @@ public class EnemyController
         EnemyModel.CurrentEnemyState = newState;
         EnemyModel.CurrentEnemyState.OnStateEnter();
     }
+    public void ChangeSpeed()
+    {
+        if (EnemyModel.CurrentEnemyState == enemyView.EnemyPetrolState)
+            enemyView.NavMeshAgent.speed = EnemyModel.PetrolSpeed;
+        else
+            enemyView.NavMeshAgent.speed = EnemyModel.ChaseSpeed;
+    }
     public void GoToRandomPointOnNavMesh()
     {
         enemyView.NavMeshAgent.SetDestination(GetRandomPointOnNavMesh());
@@ -60,11 +67,9 @@ public class EnemyController
 
     private void DetectPlayer()
     {
-        Debug.Log("Detect Player");
         Collider[] playerCollider = Physics.OverlapSphere(enemyView.transform.position, EnemyModel.ChaseRadius, EnemyModel.PlayerLayerMask);
         if(playerCollider.Length == 0) 
         {
-            Debug.Log("No Player Detected");
             EnemyModel.Player = null;
             ChangeState(enemyView.EnemyPetrolState);
             return;
