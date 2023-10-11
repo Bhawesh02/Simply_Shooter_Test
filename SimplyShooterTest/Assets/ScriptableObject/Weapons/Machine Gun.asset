@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   WeaponType: 2
   AttackRange: 10
-  FireRate: 10
+  FireRate: 3.5
   ProjectileType: 0
   Damage: 2
