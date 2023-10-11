@@ -107,7 +107,7 @@ public class PlayerController
         else
             projectile = ProjectileService.Instance.GetBullet();
         projectile.SetEnemtTransform(playerModel.Enemy.gameObject.transform);
-        projectile.SetWeaponFired(playerModel.CurrentWeapon);
+        projectile.SetDamage(playerModel.CurrentWeapon.Damage);
         Transform spawnPoint = playerModel.CurrentWeaponContainer.transform.GetChild(1).transform;
         projectile.transform.SetPositionAndRotation(spawnPoint.position, spawnPoint.rotation);
         projectile.gameObject.SetActive(true);

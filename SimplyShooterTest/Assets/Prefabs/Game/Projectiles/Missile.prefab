@@ -181,6 +181,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   projectileData: {fileID: 11400000, guid: 5988422badc93244ca76a609127af78e, type: 2}
+  enemyLayerMask:
+    serializedVersion: 2
+    m_Bits: 8
 --- !u!1 &4774200053412463131
 GameObject:
   m_ObjectHideFlags: 0

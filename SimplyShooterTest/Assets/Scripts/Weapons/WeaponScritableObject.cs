@@ -9,4 +9,5 @@ public class WeaponScritableObject : ScriptableObject
     public float AttackRange;
     public float FireRate;
     public ProjectileType ProjectileType;
+    public float Damage;
 }

@@ -3,9 +3,18 @@ using UnityEngine;
 
 public class MissileController : ProjectileController
 {
+    [SerializeField]
+    private LayerMask enemyLayerMask;
     protected override void DealDamage()
     {
-        Debug.Log("Blast");
+        Collider[] hitCollider = Physics.OverlapSphere(transform.position,projectileData.AoeRange, enemyLayerMask);
+        Debug.Log(hitCollider.Length);
+        EnemyView enemy;
+        for(int i = 0; i < hitCollider.Length; i++)
+        {
+            enemy = hitCollider[i].gameObject.GetComponent<EnemyView>();
+            EventService.Instance.InvokeEnemyDamaged(enemy, Damage);
+        }
     }
 
     protected override void OnTriggerEnter(Collider other)

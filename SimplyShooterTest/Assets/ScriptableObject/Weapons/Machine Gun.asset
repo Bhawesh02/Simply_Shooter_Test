@@ -15,3 +15,5 @@ MonoBehaviour:
   WeaponType: 2
   AttackRange: 10
   FireRate: 10
+  ProjectileType: 0
+  Damage: 2

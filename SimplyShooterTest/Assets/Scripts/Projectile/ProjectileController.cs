@@ -5,13 +5,13 @@ using UnityEngine;
 public abstract class ProjectileController : MonoBehaviour
 {
     [SerializeField]
-    private ProjectileScriptableObject projectileData;
+    protected ProjectileScriptableObject projectileData;
 
     private new Rigidbody rigidbody;
     private Transform EnemyTransform = null;
     protected Coroutine AutoReturn;
     protected float NotCollidedWaitTime = 10f;
-    public WeaponScritableObject WeponFired;
+    public float Damage { get;private set; }
     private void Awake()
     {
         rigidbody = GetComponent<Rigidbody>();
@@ -31,9 +31,9 @@ public abstract class ProjectileController : MonoBehaviour
         rigidbody.velocity =  projectileData.Speed * direction;
     }
 
-    public void SetWeaponFired(WeaponScritableObject weapon)
+    public void SetDamage(float damageAmt)
     {
-        WeponFired = weapon;
+        Damage = damageAmt;
     }
     protected virtual void OnDisable()
     {
