@@ -18,7 +18,7 @@ public class MissileView : ProjectileView
 
     protected override void OnTriggerEnter(Collider other)
     {
-        if (other.GetComponent<ProjectileView>() != null)
+        if (other.GetComponent<ProjectileView>() != null || other.gameObject.CompareTag("FinishArea"))
         {
             return;
         }
