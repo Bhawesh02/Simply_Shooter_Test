@@ -8,7 +8,6 @@ public class MissileController : ProjectileController
     protected override void DealDamage()
     {
         Collider[] hitCollider = Physics.OverlapSphere(transform.position,projectileData.AoeRange, enemyLayerMask);
-        Debug.Log(hitCollider.Length);
         EnemyView enemy;
         for(int i = 0; i < hitCollider.Length; i++)
         {
