@@ -10,20 +10,29 @@ public class PlayerController
     private PlayerModel playerModel;
     private float nextEnemyDetectionTime;
     private float nextEnemyShootTime;
-
+    private float hypeStartTime;
     public PlayerController(PlayerView view)
     {
         playerView = view;
         playerModel = new();
         nextEnemyDetectionTime = Time.time;
         nextEnemyShootTime = Time.time;
+        EventService.Instance.JoystickEnabled += () => { SetMovementAmount(Vector2.zero); };
+        EventService.Instance.JoystickDisabled += () => { SetMovementAmount(Vector2.zero); };
+        EventService.Instance.JoystickMoved += (joystick) => { SetMovementAmount(joystick.GetMovementAmount()); };
+        EventService.Instance.WeaponPickedUp += ChangeWeapon;
         EventService.Instance.CoinCollected += IncreaseCoinCollected;
-        EventService.Instance.EnemyDied += EmenyKilledSwitchEnemy;
+        EventService.Instance.EnemyDied += EmenyKilled;
+        
     }
     ~PlayerController()
     {
+        EventService.Instance.JoystickEnabled -= () => { SetMovementAmount(Vector2.zero); };
+        EventService.Instance.JoystickDisabled -= () => { SetMovementAmount(Vector2.zero); };
+        EventService.Instance.JoystickMoved -= (joystick) => { SetMovementAmount(joystick.GetMovementAmount()); };
+        EventService.Instance.WeaponPickedUp -= ChangeWeapon;
         EventService.Instance.CoinCollected -= IncreaseCoinCollected;
-        EventService.Instance.EnemyDied -= EmenyKilledSwitchEnemy;
+        EventService.Instance.EnemyDied -= EmenyKilled;
     }
 
     public void SetMovementAmount(Vector2 movAmt)
@@ -48,6 +57,11 @@ public class PlayerController
         playerModel.CurrentWeapon = weapon;
         playerModel.CurrentWeaponContainer?.SetActive(false);
         ShowWeapon(weapon.WeaponType);
+        playerModel.CurrentFireRate = weapon.FireRate;
+        if(playerModel.InHypeMode)
+        {
+            playerModel.CurrentFireRate *= playerModel.HypeModeFireRateMultiplier;
+        }
     }
 
     private void ShowWeapon(WeaponTypes weaponType)
@@ -84,7 +98,7 @@ public class PlayerController
         if (Time.time >= nextEnemyShootTime)
         {
             ShootAtEnemy();
-            nextEnemyShootTime = Time.time + (60f / playerModel.CurrentWeapon.FireRate) / 60f;
+            nextEnemyShootTime = Time.time + (60f / playerModel.CurrentFireRate) / 60f;
         }
     }
 
@@ -142,18 +156,59 @@ public class PlayerController
         projectile.Fly();
     }
 
-    private void EmenyKilledSwitchEnemy(EnemyView enemy)
+    private void EmenyKilled(EnemyView enemy)
     {
         playerModel.Enemies.Remove(enemy);
         nextEnemyDetectionTime = Time.time;
+        if(playerModel.NumberOfEnemiesKilledSinceLastHypeCharge < playerModel.NumOfEnemiesToKillToChargeHype)
+        {
+            playerModel.NumberOfEnemiesKilledSinceLastHypeCharge++;
+        }
     }
+
+    public IEnumerator HypeMode()
+    {
+        StartHype();
+        yield return new WaitForSeconds(playerModel.HypeModeDuration);
+        ResetHype();
+    }
+
+    private void StartHype()
+    {
+        EventService.Instance.InvokeHypeModeStarted();
+        playerModel.InHypeMode = true;
+        playerModel.CurrentFireRate *= playerModel.HypeModeFireRateMultiplier;
+        hypeStartTime = Time.time;
+    }
+
+    private void ResetHype()
+    {
+        EventService.Instance.InvokeHypeModeEnded();
+        playerModel.InHypeMode = false;
+        playerModel.NumberOfEnemiesKilledSinceLastHypeCharge = 0;
+        playerModel.CurrentFireRate /= playerModel.HypeModeFireRateMultiplier;
+    }
+
     private void IncreaseCoinCollected(CoinPickupController controller)
     {
         playerModel.NumOfCoinsColleted++;
     }
-
+    public bool GetInHypeMode()
+    {
+        return playerModel.InHypeMode;
+    }
     public int GetNumberOfCoinsCollected()
     {
         return playerModel.NumOfCoinsColleted;
+    }
+
+    public float GetHowMuchHypeIsCharged()
+    {
+        return (float)playerModel.NumberOfEnemiesKilledSinceLastHypeCharge / (float)playerModel.NumOfEnemiesToKillToChargeHype;
+    }
+
+    public float GetHowMuchHypeIsLeft()
+    {
+        return (((hypeStartTime + playerModel.HypeModeDuration) - Time.time) / playerModel.HypeModeDuration);
     }
 }
