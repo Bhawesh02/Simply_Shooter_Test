@@ -10,7 +10,7 @@ public class EventService : GenericSingleton<EventService>
     public event Action<WeaponScritableObject> WeaponPickedUp;
     public event Action<EnemyScriptableObject> EnemyDataChanged;
     public event Action<EnemyView, float> EnemyDamaged;
-    public event Action<Transform> EnemyDied;
+    public event Action<EnemyView> EnemyDied;
     public event Action<CoinPickupController> CoinCollected;
 
     public void InvokeJoystickEnabled()
@@ -37,9 +37,9 @@ public class EventService : GenericSingleton<EventService>
     {
         EnemyDamaged?.Invoke(enemy, damage);
     }
-    public void InokeEnemyDied(Transform enemyTransform)
+    public void InokeEnemyDied(EnemyView enemy)
     {
-        EnemyDied?.Invoke(enemyTransform);
+        EnemyDied?.Invoke(enemy);
     }
     public void InvokeCoinCollected(CoinPickupController coin)
     {
