@@ -50,6 +50,5 @@ public class JoystickView : MonoBehaviour
     {
         JoystickKnob.anchoredPosition = Vector2.zero;
         gameObject.SetActive(false);
-
     }
 }
