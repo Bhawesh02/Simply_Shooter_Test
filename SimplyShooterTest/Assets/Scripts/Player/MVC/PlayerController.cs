@@ -160,14 +160,13 @@ public class PlayerController
     {
         playerModel.Enemies.Remove(enemy);
         nextEnemyDetectionTime = Time.time;
-        playerModel.NumberOfEnemiesKilledSinceLastHypeCharge++;
-        if(playerModel.NumberOfEnemiesKilledSinceLastHypeCharge == playerModel.NumOfEnemiesToKillToChargeHype)
+        if(playerModel.NumberOfEnemiesKilledSinceLastHypeCharge < playerModel.NumOfEnemiesToKillToChargeHype)
         {
-            playerView.StartCoroutine(HypeMode());
+            playerModel.NumberOfEnemiesKilledSinceLastHypeCharge++;
         }
     }
 
-    private IEnumerator HypeMode()
+    public IEnumerator HypeMode()
     {
         StartHype();
         yield return new WaitForSeconds(playerModel.HypeModeDuration);
@@ -177,7 +176,6 @@ public class PlayerController
     private void StartHype()
     {
         EventService.Instance.InvokeHypeModeStarted();
-        Debug.Log("Hype Started");
         playerModel.InHypeMode = true;
         playerModel.CurrentFireRate *= playerModel.HypeModeFireRateMultiplier;
         hypeStartTime = Time.time;
@@ -186,8 +184,6 @@ public class PlayerController
     private void ResetHype()
     {
         EventService.Instance.InvokeHypeModeEnded();
-        Debug.Log("Hype Ended");
-
         playerModel.InHypeMode = false;
         playerModel.NumberOfEnemiesKilledSinceLastHypeCharge = 0;
         playerModel.CurrentFireRate /= playerModel.HypeModeFireRateMultiplier;
@@ -197,7 +193,10 @@ public class PlayerController
     {
         playerModel.NumOfCoinsColleted++;
     }
-
+    public bool GetInHypeMode()
+    {
+        return playerModel.InHypeMode;
+    }
     public int GetNumberOfCoinsCollected()
     {
         return playerModel.NumOfCoinsColleted;
@@ -205,7 +204,7 @@ public class PlayerController
 
     public float GetHowMuchHypeIsCharged()
     {
-        return playerModel.NumberOfEnemiesKilledSinceLastHypeCharge / playerModel.NumOfEnemiesToKillToChargeHype;
+        return (float)playerModel.NumberOfEnemiesKilledSinceLastHypeCharge / (float)playerModel.NumOfEnemiesToKillToChargeHype;
     }
 
     public float GetHowMuchHypeIsLeft()

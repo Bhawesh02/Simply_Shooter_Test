@@ -1,5 +1,6 @@
 
 using System;
+using Unity.VisualScripting.InputSystem;
 using UnityEngine;
 
 public class EventService : GenericSingleton<EventService>
@@ -12,6 +13,7 @@ public class EventService : GenericSingleton<EventService>
     public event Action<EnemyView, float> EnemyDamaged;
     public event Action<EnemyView> EnemyDied;
     public event Action<CoinPickupController> CoinCollected;
+    public event Action DoubleTapOnRightHalfOfScreen;
     public event Action HypeModeStarted;
     public event Action HypeModeEnded;
 
@@ -46,6 +48,10 @@ public class EventService : GenericSingleton<EventService>
     public void InvokeCoinCollected(CoinPickupController coin)
     {
         CoinCollected?.Invoke(coin);
+    }
+    public void InvokeDoubleTabOnRightHalfOfScrren()
+    {
+        DoubleTapOnRightHalfOfScreen?.Invoke();
     }
     public void InvokeHypeModeStarted()
     {

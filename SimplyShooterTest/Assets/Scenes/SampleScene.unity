@@ -634,6 +634,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   coinAmtText: {fileID: 628897880}
   player: {fileID: 1247138295}
+  hupeBarForeground: {fileID: 832091465}
 --- !u!1 &505534724
 GameObject:
   m_ObjectHideFlags: 3
@@ -1433,7 +1434,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.2297529, y: -0.000000016746093, z: 0.0000000039532155, w: 0.973249}
+  m_LocalRotation: {x: 0.2297529, y: 0.000000016746093, z: -0.0000000039532155, w: 0.973249}
   m_LocalPosition: {x: 5.25, y: 4.1829996, z: -7.1499996}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2235,7 +2236,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1553112702}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.2297529, y: -0.000000016746093, z: 0.0000000039532155, w: 0.973249}
+  m_LocalRotation: {x: 0.2297529, y: 0.000000016746093, z: -0.0000000039532155, w: 0.973249}
   m_LocalPosition: {x: 5.25, y: 4.1829996, z: -7.1499996}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0

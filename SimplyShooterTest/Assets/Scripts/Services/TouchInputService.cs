@@ -39,7 +39,7 @@ public class TouchInputService : MonoGenericSingelton<TouchInputService>
             tapCount++;
             if (tapCount == 2)
             {
-                Debug.Log("Start Hype");
+                EventService.Instance.InvokeDoubleTabOnRightHalfOfScrren();
                 tapCount = 0;
             }
             return;
