@@ -11,10 +11,10 @@ public class PlayerController
     private float nextEnemyDetectionTime;
     private float nextEnemyShootTime;
     private float hypeStartTime;
-    public PlayerController(PlayerView view)
+    public PlayerController(PlayerView view, PlayerScriptableObject playerData)
     {
         playerView = view;
-        playerModel = new();
+        playerModel = new(playerData);
         nextEnemyDetectionTime = Time.time;
         nextEnemyShootTime = Time.time;
         EventService.Instance.JoystickEnabled += () => { SetMovementAmount(Vector2.zero); };
@@ -34,7 +34,10 @@ public class PlayerController
         EventService.Instance.CoinCollected -= IncreaseCoinCollected;
         EventService.Instance.EnemyDied -= EmenyKilled;
     }
-
+    public void RefreshPlayerData(PlayerScriptableObject playerData)
+    {
+        playerModel.SetPlayerData(playerData);
+    }
     public void SetMovementAmount(Vector2 movAmt)
     {
         movementAmount = movAmt;

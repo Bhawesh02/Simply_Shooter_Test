@@ -6,9 +6,10 @@ using UnityEngine.AI;
 
 public class PlayerView : MonoBehaviour
 {
-    
+
     public NavMeshAgent NavMeshAgent;
-    
+    [SerializeField]
+    private PlayerScriptableObject playerScriptableObject;
     public PlayerController PlayerController;
 
     public WeaponScritableObject startWeapon;
@@ -19,16 +20,19 @@ public class PlayerView : MonoBehaviour
 
     private void Awake()
     {
-        PlayerController = new(this);   
+        PlayerController = new(this, playerScriptableObject);
     }
     private void Start()
     {
         PlayerController.ChangeWeapon(startWeapon);
         EventService.Instance.DoubleTapOnRightHalfOfScreen += TryToGoHypeMode;
+        EventService.Instance.PlayerDataChanged += (playerData) => { if (playerData == playerScriptableObject) PlayerController.RefreshPlayerData(playerData); };
     }
     private void OnDestroy()
     {
         EventService.Instance.DoubleTapOnRightHalfOfScreen -= TryToGoHypeMode;
+        EventService.Instance.PlayerDataChanged -= (playerData) => { if (playerData == playerScriptableObject) PlayerController.RefreshPlayerData(playerData); };
+        StopAllCoroutines();
     }
     private void TryToGoHypeMode()
     {
