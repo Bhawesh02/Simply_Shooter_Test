@@ -81,8 +81,8 @@ public class PlayerController
         if (playerModel.Enemies.Count == 0)
             return;
         GetNearestEnemy();
-        AimAtNearestEnemy();
-        if (Time.time >= nextEnemyShootTime)
+        Quaternion targetRotation = AimAtNearestEnemy();
+        if (Time.time >= nextEnemyShootTime && (targetRotation == playerView.transform.rotation))
         {
             ShootAtEnemy();
             nextEnemyShootTime = Time.time + (60f / playerModel.CurrentFireRate) / 60f;
@@ -118,12 +118,13 @@ public class PlayerController
             }
         }
     }
-    private void AimAtNearestEnemy()
+    private Quaternion AimAtNearestEnemy()
     {
         Vector3 distanceBetweenEnemyAndPlayer = playerModel.NearestEnemy.transform.position - playerView.transform.position;
         float rotationY = Mathf.Atan2(distanceBetweenEnemyAndPlayer.x, distanceBetweenEnemyAndPlayer.z) * Mathf.Rad2Deg;
         Quaternion targetRotation = Quaternion.Euler(0.0f, rotationY, 0.0f);
         playerView.transform.rotation = Quaternion.RotateTowards(playerView.transform.rotation, targetRotation, Time.deltaTime * playerModel.AutoAimRotationSpeed);
+        return targetRotation;
     }
 
 
