@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class MissileController : ProjectileController
+public class MissileView : ProjectileView
 {
     [SerializeField]
     private LayerMask enemyLayerMask;
@@ -18,7 +18,7 @@ public class MissileController : ProjectileController
 
     protected override void OnTriggerEnter(Collider other)
     {
-        if (other.GetComponent<ProjectileController>() != null)
+        if (other.GetComponent<ProjectileView>() != null)
         {
             return;
         }

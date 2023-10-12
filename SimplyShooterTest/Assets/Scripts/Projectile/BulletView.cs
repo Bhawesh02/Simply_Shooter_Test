@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class BulletController : ProjectileController
+public class BulletView : ProjectileView
 {
     [SerializeField]
     private TrailRenderer trailRenderer;
@@ -19,7 +19,7 @@ public class BulletController : ProjectileController
 
     protected override void OnTriggerEnter(Collider other)
     {
-        if(other.GetComponent<ProjectileController>() != null) {
+        if(other.GetComponent<ProjectileView>() != null) {
             return;
         }
         enemy = other.GetComponent<EnemyView>();
