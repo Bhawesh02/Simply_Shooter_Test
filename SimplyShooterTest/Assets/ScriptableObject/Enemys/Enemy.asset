@@ -12,14 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9db4c24722e986c4386ace80cb3313cd, type: 3}
   m_Name: Enemy
   m_EditorClassIdentifier: 
-  Health: 20
-  PetrolRadius: 3
-  PetrolPointSwitchDelay: 2
-  PetrolSpeed: 1
-  ChaseRadius: 7
-  ChaseSpeed: 2
-  PlayerDetectionDelay: 0.5
-  PlayerPositionChangeDelay: 0.5
-  PlayerLayerMask:
+  <Health>k__BackingField: 20
+  <PetrolRadius>k__BackingField: 2
+  <PetrolPointSwitchDelay>k__BackingField: 1
+  <PetrolSpeed>k__BackingField: 3
+  <ChaseRadius>k__BackingField: 5
+  <ChaseSpeed>k__BackingField: 5
+  <PlayerDetectionDelay>k__BackingField: 0.2
+  <PlayerPositionChangeDelay>k__BackingField: 0.1
+  <PlayerLayerMask>k__BackingField:
     serializedVersion: 2
     m_Bits: 64

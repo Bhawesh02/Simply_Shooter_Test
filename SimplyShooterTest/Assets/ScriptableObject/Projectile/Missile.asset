@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aea55b96635063a4784b822dba716328, type: 3}
   m_Name: Missile
   m_EditorClassIdentifier: 
-  ProjectileType: 1
-  Speed: 6
-  HasAoeDamange: 1
-  AoeRange: 2
+  <ProjectileType>k__BackingField: 1
+  <Speed>k__BackingField: 4
+  <HasAoeDamange>k__BackingField: 1
