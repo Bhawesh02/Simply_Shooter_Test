@@ -5,11 +5,14 @@ using UnityEditor;
 [CreateAssetMenu(fileName ="NewProjectile",menuName ="ScriptableObject/NewProjectile")]
 public class ProjectileScriptableObject : ScriptableObject
 {
-    public ProjectileType ProjectileType;
-    public float Speed;
-    public bool HasAoeDamange;
+    [field: SerializeField]
+    public ProjectileType ProjectileType { get; private set; }
+    [field: SerializeField]
+    public float Speed { get; private set; }
+    [field: SerializeField]
+    public bool HasAoeDamange { get; private set; }
     [HideInInspector]
-    public float AoeRange;
+    public float AoeRange { get; private set; }
 
     [CustomEditor(typeof(ProjectileScriptableObject))]
     public class ProjectileScriptableObjectEditor : Editor

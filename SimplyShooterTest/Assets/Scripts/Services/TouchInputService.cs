@@ -33,7 +33,7 @@ public class TouchInputService : MonoGenericSingelton<TouchInputService>
         ETouch.Touch.onFingerUp -= HandelFingerUp;
         EventService.Instance.PlayerWon -= DisableTouch;
         EventService.Instance.PlayerLost -= DisableTouch;
-        MovementJoystick.gameObject.SetActive(false);
+        MovementJoystick?.gameObject.SetActive(false);
         EnhancedTouchSupport.Disable();
     }
 

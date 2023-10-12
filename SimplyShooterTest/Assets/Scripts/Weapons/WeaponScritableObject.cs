@@ -5,9 +5,14 @@ using UnityEngine;
 [CreateAssetMenu(fileName="NewWepon",menuName ="ScriptableObject/NewWeapon")]
 public class WeaponScritableObject : ScriptableObject
 {
-    public WeaponTypes WeaponType;
-    public float AttackRange;
-    public float FireRate;
-    public ProjectileType ProjectileType;
-    public float Damage;
+    [field: SerializeField]
+    public WeaponTypes WeaponType { get; private set; }
+    [field: SerializeField]
+    public float AttackRange { get; private set; }
+    [field: SerializeField]
+    public float FireRate { get; private set; }
+    [field: SerializeField]
+    public ProjectileType ProjectileType { get; private set; }
+    [field: SerializeField]
+    public float Damage { get; private set; }
 }
