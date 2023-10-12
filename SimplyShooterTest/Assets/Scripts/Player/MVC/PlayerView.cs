@@ -14,10 +14,10 @@ public class PlayerView : MonoBehaviour
 
     public WeaponScritableObject startWeapon;
     public LayerMask EnemyLayer;
-    public EnemyView Enemy;
     public WeaponContainer WeaponContainer;
     private Coroutine HypeModeCoroutine;
-
+    [field: SerializeField]
+    public Animator PlayerAnimator { get; private set; }
     private void Awake()
     {
         PlayerController = new(this, playerScriptableObject);
