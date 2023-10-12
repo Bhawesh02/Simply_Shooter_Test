@@ -21,18 +21,14 @@ public class UIService : MonoGenericSingelton<UIService>
     private Button resartButton;
     private void Start()
     {
-        
-        resartButton.onClick.AddListener(RestartScene);
-        hupeBarForeground.fillAmount = 0;
-    }
-
-    private void OnEnable()
-    {
         EventService.Instance.CoinCollected += UpdateCoinCount;
         EventService.Instance.EnemyDied += IncreaseHypeBarFill;
         EventService.Instance.PlayerWon += () => { ShowWinLoseMessage("Player Won"); };
         EventService.Instance.PlayerLost += () => { ShowWinLoseMessage("Player Lost"); };
+        resartButton.onClick.AddListener(RestartScene);
+        hupeBarForeground.fillAmount = 0;
     }
+
     private void OnDisable()
     {
         EventService.Instance.CoinCollected -= UpdateCoinCount;

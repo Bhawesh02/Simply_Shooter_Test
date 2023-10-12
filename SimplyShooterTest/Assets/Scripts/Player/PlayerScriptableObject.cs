@@ -13,7 +13,8 @@ public class PlayerScriptableObject : ScriptableObject
     public float HypeModeDuration { get; private set; }
     [field: SerializeField]
     public float HypeModeFireRateMultiplier { get; private set; }
-    /*private void OnValidate()
+    
+   /*private void OnValidate()
     {
         if (Application.isEditor)
             EventService.Instance.InvokePlayerDataChanged(this);

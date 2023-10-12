@@ -16,22 +16,13 @@ public class EnemyController
     {
         this.enemyView = enemyView;
         EnemyModel = new(enemyScriptableObject);
-        EventService.Instance.EnemyDataChanged += RefreshData;
         PlayerDetectionCorotine = enemyView.StartCoroutine(PlayerDetectStart());
-        EventService.Instance.EnemyDamaged += TakeDamage;
     }
 
     
 
-    ~EnemyController()
-    {
-        EventService.Instance.EnemyDataChanged -= RefreshData;
-        EventService.Instance.EnemyDamaged -= TakeDamage;
 
-    }
-
-
-    private void RefreshData(EnemyScriptableObject enemyData)
+    public void RefreshData(EnemyScriptableObject enemyData)
     {
         if(enemyData == enemyView.EnemyScriptableObject)
         {
@@ -84,7 +75,7 @@ public class EnemyController
         EnemyModel.Player = playerCollider[0].gameObject.GetComponent<PlayerView>();
         ChangeState(enemyView.EnemyChaseState);
     }
-    private void TakeDamage(EnemyView view, float damage)
+    public void TakeDamage(EnemyView view, float damage)
     {
         if (view != enemyView)
             return;
