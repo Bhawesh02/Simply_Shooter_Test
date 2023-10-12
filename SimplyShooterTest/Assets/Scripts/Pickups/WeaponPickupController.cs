@@ -1,16 +1,17 @@
 
 using UnityEngine;
 
-public class PickupWeaponController : MonoBehaviour
+public class WeaponPickupController : PickupController
 {
     public WeaponScritableObject weaponData;
 
-    private void OnTriggerEnter(Collider other)
+    protected override void OnTriggerEnter(Collider other)
     {
-        PlayerView player = other.gameObject.transform.root.GetComponent<PlayerView>();
+        base.OnTriggerEnter(other);
         if (player == null)
             return;
         EventService.Instance.InvokeWeaponPickedUp(weaponData);
         Destroy(gameObject);
     }
+
 }

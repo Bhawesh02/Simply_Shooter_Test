@@ -1,7 +1,7 @@
 
 using UnityEngine;
 
-public class CoinPickupController : MonoBehaviour
+public class CoinPickupController : PickupController
 {
     [SerializeField]
     private float rotationSpeed;
@@ -11,9 +11,10 @@ public class CoinPickupController : MonoBehaviour
     {
         transform.Rotate(rotationSpeed * Time.deltaTime * Vector3.up);       
     }
-    private void OnTriggerEnter(Collider other)
+    protected override void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.GetComponent<PlayerView>() == null)
+        base.OnTriggerEnter(other);
+        if (player == null)
             return;
         EventService.Instance.InvokeCoinCollected(this);
 
