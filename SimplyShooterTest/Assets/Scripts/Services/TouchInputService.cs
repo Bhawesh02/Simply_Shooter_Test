@@ -15,7 +15,7 @@ public class TouchInputService : MonoGenericSingelton<TouchInputService>
     private float maxTapDelay;
     private int tapCount = 0;
     private Coroutine resetTapCoroutine;
-    private void OnEnable()
+    private void Start()
     {
         EnhancedTouchSupport.Enable();
         ETouch.Touch.onFingerDown += HandelFingerDown;
@@ -26,31 +26,13 @@ public class TouchInputService : MonoGenericSingelton<TouchInputService>
     }
 
 
-    private void OnDisable()
-    {
-        ETouch.Touch.onFingerDown -= HandelFingerDown;
-        ETouch.Touch.onFingerMove -= HandelFingerMove;
-        ETouch.Touch.onFingerUp -= HandelFingerUp;
-        EventService.Instance.PlayerWon -= DisableTouch;
-        EventService.Instance.PlayerLost -= DisableTouch;
-        if(MovementJoystick!=null)
-        MovementJoystick.gameObject.SetActive(false);
-        EnhancedTouchSupport.Disable();
-    }
+    
 
     private void HandelFingerDown(Finger fingerDown)
     {
         if (fingerDown.screenPosition.x > Screen.width / 2f)
         {
-            if (resetTapCoroutine != null)
-                StopCoroutine(resetTapCoroutine);
-            TapFinger = fingerDown;
-            tapCount++;
-            if (tapCount == 2)
-            {
-                EventService.Instance.InvokeDoubleTabOnRightHalfOfScrren();
-                tapCount = 0;
-            }
+            DoubleTapFunction(fingerDown);
             return;
         }
         if (MovementFinger != null)
@@ -58,6 +40,20 @@ public class TouchInputService : MonoGenericSingelton<TouchInputService>
         MovementFinger = fingerDown;
         SpawnJoystick();
     }
+
+    private void DoubleTapFunction(Finger fingerDown)
+    {
+        if (resetTapCoroutine != null)
+            StopCoroutine(resetTapCoroutine);
+        TapFinger = fingerDown;
+        tapCount++;
+        if (tapCount == 2)
+        {
+            EventService.Instance.InvokeDoubleTabOnRightHalfOfScrren();
+            tapCount = 0;
+        }
+    }
+
     private void HandelFingerMove(Finger fingerMoved)
     {
         if (fingerMoved != MovementFinger) return;
@@ -76,6 +72,8 @@ public class TouchInputService : MonoGenericSingelton<TouchInputService>
     public void SpawnJoystick()
     {
         MovementJoystick.gameObject.SetActive(true);
+        if (!MovementJoystick.gameObject.activeSelf)
+            Debug.LogError("Joystick Cant Spawn");
         MovementJoystick.JoystickRectTransform.anchoredPosition = ClampPostion(MovementFinger.screenPosition, MovementJoystick);
     }
 
@@ -107,5 +105,17 @@ public class TouchInputService : MonoGenericSingelton<TouchInputService>
     private void DisableTouch()
     {
         this.enabled = false;
+    }
+
+    private void OnDisable()
+    {
+        ETouch.Touch.onFingerDown -= HandelFingerDown;
+        ETouch.Touch.onFingerMove -= HandelFingerMove;
+        ETouch.Touch.onFingerUp -= HandelFingerUp;
+        EventService.Instance.PlayerWon -= DisableTouch;
+        EventService.Instance.PlayerLost -= DisableTouch;
+        if (MovementJoystick != null)
+            MovementJoystick.gameObject.SetActive(false);
+        EnhancedTouchSupport.Disable();
     }
 }

@@ -1655,7 +1655,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.2297529, y: -0.000000016746093, z: 0.0000000039532155, w: 0.973249}
+  m_LocalRotation: {x: 0.2297529, y: 0.000000016746093, z: -0.0000000039532155, w: 0.973249}
   m_LocalPosition: {x: 4.7, y: 4.1829996, z: -3.7399998}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2617,7 +2617,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1553112702}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.2297529, y: -0.000000016746093, z: 0.0000000039532155, w: 0.973249}
+  m_LocalRotation: {x: 0.2297529, y: 0.000000016746093, z: -0.0000000039532155, w: 0.973249}
   m_LocalPosition: {x: 4.7, y: 4.1829996, z: -3.7399998}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -3718,6 +3718,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: JoyStick
       objectReference: {fileID: 0}
+    - target: {fileID: 1238377204543757970, guid: 94483c4f18282124c9dbfbdd4c77e2db, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6136803619686313631, guid: 94483c4f18282124c9dbfbdd4c77e2db, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -4102,11 +4106,11 @@ SceneRoots:
   - {fileID: 963194228}
   - {fileID: 1553112704}
   - {fileID: 705507995}
+  - {fileID: 1794866798}
   - {fileID: 995308712}
   - {fileID: 591570210}
   - {fileID: 1917512559}
   - {fileID: 269073671}
-  - {fileID: 1794866798}
   - {fileID: 174096410}
   - {fileID: 1964714701}
   - {fileID: 286716859}
