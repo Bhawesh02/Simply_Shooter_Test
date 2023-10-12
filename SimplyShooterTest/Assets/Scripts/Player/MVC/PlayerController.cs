@@ -18,11 +18,12 @@ public class PlayerController
         nextEnemyDetectionTime = Time.time;
         nextEnemyShootTime = Time.time;
         EventService.Instance.CoinCollected += IncreaseCoinCollected;
+        EventService.Instance.EnemyDied += EmenyKilledSwitchEnemy;
     }
     ~PlayerController()
     {
         EventService.Instance.CoinCollected -= IncreaseCoinCollected;
-
+        EventService.Instance.EnemyDied -= EmenyKilledSwitchEnemy;
     }
 
     public void SetMovementAmount(Vector2 movAmt)
@@ -35,7 +36,7 @@ public class PlayerController
         if (movementAmount == Vector2.zero)
             return;
         Vector3 scaledMovement = playerView.NavMeshAgent.speed * Time.deltaTime * new Vector3(movementAmount.x, 0, movementAmount.y);
-        if (playerModel.Enemy == null)
+        if (playerModel.Enemies.Count == 0)
             playerView.transform.LookAt(playerView.transform.position + scaledMovement, Vector3.up);
         playerView.NavMeshAgent.Move(scaledMovement);
     }
@@ -73,12 +74,13 @@ public class PlayerController
     {
         if (Time.time >= nextEnemyDetectionTime)
         {
-            DetectEnemy();
+            DetectEnemies();
             nextEnemyDetectionTime = Time.time + playerModel.EnemyDetectionDelay;
         }
-        if (playerModel.Enemy == null)
+        if (playerModel.Enemies.Count == 0)
             return;
-        AimAtEnemy();
+        GetNearestEnemy();
+        AimAtNearestEnemy();
         if (Time.time >= nextEnemyShootTime)
         {
             ShootAtEnemy();
@@ -88,23 +90,43 @@ public class PlayerController
 
 
 
-    private void DetectEnemy()
+    private void DetectEnemies()
     {
         Collider[] enemyColliders = Physics.OverlapSphere(playerView.transform.position, playerModel.CurrentWeapon.AttackRange, playerView.EnemyLayer);
+        playerModel.Enemies.Clear();
         if (enemyColliders.Length == 0)
         {
-            playerModel.Enemy = null;
             return;
         }
-        playerModel.Enemy = enemyColliders[0].GetComponentInParent<EnemyView>();
+        for (int i = 0; i < enemyColliders.Length; i++)
+        {
+            playerModel.Enemies.Add(enemyColliders[i].GetComponent<EnemyView>());
+        }
+    }
+    private void GetNearestEnemy()
+    {
+        float minDistance = 9999f;
+        float enemyDistance;
+        for (int i = 0; i < playerModel.Enemies.Count; i++)
+        {
+            enemyDistance = Vector3.Distance(playerModel.Enemies[i].transform.position, playerView.transform.position);
+            if (enemyDistance < minDistance)
+            {
+                minDistance = enemyDistance;
+                playerModel.NearestEnemy = playerModel.Enemies[i];
+            }
+        }
+    }
+    private void AimAtNearestEnemy()
+    {
+        Vector3 distanceBetweenEnemyAndPlayer = playerModel.NearestEnemy.transform.position - playerView.transform.position;
+        float rotationY = Mathf.Atan2(distanceBetweenEnemyAndPlayer.x, distanceBetweenEnemyAndPlayer.z) * Mathf.Rad2Deg;
+        Quaternion targetRotation = Quaternion.Euler(0.0f, rotationY, 0.0f);
+        playerView.transform.rotation = Quaternion.RotateTowards(playerView.transform.rotation, targetRotation, Time.deltaTime * playerModel.AutoAimRotationSpeed);
     }
 
-    private void AimAtEnemy()
-    {
-        Vector3 distanceBetweenEnemyAndPlayer = playerModel.Enemy.transform.position - playerView.transform.position;
-        float rotationY = Mathf.Atan2(distanceBetweenEnemyAndPlayer.x, distanceBetweenEnemyAndPlayer.z) * Mathf.Rad2Deg;
-        playerView.transform.rotation = Quaternion.Euler(0.0f, rotationY, 0.0f);
-    }
+
+
     private void ShootAtEnemy()
     {
         ProjectileController projectile;
@@ -112,7 +134,7 @@ public class PlayerController
             projectile = ProjectileService.Instance.GetMissile();
         else
             projectile = ProjectileService.Instance.GetBullet();
-        projectile.SetEnemtTransform(playerModel.Enemy.gameObject.transform);
+        projectile.SetEnemtTransform(playerModel.NearestEnemy.gameObject.transform);
         projectile.SetDamage(playerModel.CurrentWeapon.Damage);
         Transform spawnPoint = playerModel.CurrentWeaponContainer.transform.GetChild(1).transform;
         projectile.transform.SetPositionAndRotation(spawnPoint.position, spawnPoint.rotation);
@@ -120,7 +142,11 @@ public class PlayerController
         projectile.Fly();
     }
 
-
+    private void EmenyKilledSwitchEnemy(EnemyView enemy)
+    {
+        playerModel.Enemies.Remove(enemy);
+        nextEnemyDetectionTime = Time.time;
+    }
     private void IncreaseCoinCollected(CoinPickupController controller)
     {
         playerModel.NumOfCoinsColleted++;

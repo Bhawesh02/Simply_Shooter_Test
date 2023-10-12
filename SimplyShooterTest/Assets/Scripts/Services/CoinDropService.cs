@@ -21,10 +21,10 @@ public class CoinDropService : MonoGenericSingelton<CoinDropService>
     {
         EventService.Instance.EnemyDied -= SpawnCoin;
     }
-    private void SpawnCoin(Transform enemyTransform)
+    private void SpawnCoin(EnemyView enemy)
     {
         CoinPickupController coin = coinPool.GetItem();
-        coin.transform.position = new(enemyTransform.position.x, coin.transform.position.y, enemyTransform.position.z);
+        coin.transform.position = new(enemy.transform.position.x, coin.transform.position.y, enemy.transform.position.z);
         coin.gameObject.SetActive(true);
     }
     private void RemoveCoin(CoinPickupController coin)
