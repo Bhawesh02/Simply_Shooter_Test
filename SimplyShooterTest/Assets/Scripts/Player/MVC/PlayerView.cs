@@ -69,5 +69,12 @@ public class PlayerView : MonoBehaviour
     {
         Destroy(gameObject);
     }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("FinishArea"))
+        {
+            EventService.Instance.InvokePlayerEnteredFinishLine();
+        }
+    }
 
 }

@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d41bf4723379154a8048aaecb2c33e5, type: 3}
   m_Name: Shotgun
   m_EditorClassIdentifier: 
-  WeaponType: 1
-  AttackRange: 5
-  FireRate: 2
-  ProjectileType: 0
-  Damage: 3
+  <WeaponType>k__BackingField: 1
+  <AttackRange>k__BackingField: 4
+  <FireRate>k__BackingField: 2.5
+  <ProjectileType>k__BackingField: 0
+  <Damage>k__BackingField: 6.5

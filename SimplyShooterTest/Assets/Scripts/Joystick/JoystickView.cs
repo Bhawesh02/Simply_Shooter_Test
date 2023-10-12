@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.InputSystem.EnhancedTouch;
 using ETouch = UnityEngine.InputSystem.EnhancedTouch;
 
-public class JoystickController : MonoBehaviour
+public class JoystickView : MonoBehaviour
 {
     [HideInInspector]
     public RectTransform JoystickRectTransform;

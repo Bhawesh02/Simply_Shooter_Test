@@ -3,11 +3,16 @@ using UnityEngine;
 [CreateAssetMenu(fileName ="NewPlayer",menuName ="ScriptableObject/NewPlayer")]
 public class PlayerScriptableObject : ScriptableObject
 {
-    public float EnemyDetectionDelay;
-    public float AutoAimRotationSpeed;
-    public int NumOfEnemiesToKillToChargeHype;
-    public float HypeModeDuration;
-    public float HypeModeFireRateMultiplier;
+    [field: SerializeField]
+    public float EnemyDetectionDelay { get; private set; }
+    [field: SerializeField]
+    public float AutoAimRotationSpeed { get; private set; }
+    [field: SerializeField]
+    public int NumOfEnemiesToKillToChargeHype { get; private set; }
+    [field: SerializeField]
+    public float HypeModeDuration { get; private set; }
+    [field: SerializeField]
+    public float HypeModeFireRateMultiplier { get; private set; }
     private void OnValidate()
     {
         EventService.Instance.InvokePlayerDataChanged(this);

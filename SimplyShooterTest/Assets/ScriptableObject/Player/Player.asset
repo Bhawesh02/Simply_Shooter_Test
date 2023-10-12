@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 976dee25810f66e4b94ec3fc2b085ee4, type: 3}
   m_Name: Player
   m_EditorClassIdentifier: 
-  EnemyDetectionDelay: 0.1
-  AutoAimRotationSpeed: 200
-  NumOfEnemiesToKillToChargeHype: 3
-  HypeModeDuration: 3
-  HypeModeFireRateMultiplier: 5
+  <EnemyDetectionDelay>k__BackingField: 0.1
+  <AutoAimRotationSpeed>k__BackingField: 400
+  <NumOfEnemiesToKillToChargeHype>k__BackingField: 2
+  <HypeModeDuration>k__BackingField: 3
+  <HypeModeFireRateMultiplier>k__BackingField: 5
