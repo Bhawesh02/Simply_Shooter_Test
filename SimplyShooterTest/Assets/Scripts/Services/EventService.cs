@@ -1,9 +1,7 @@
 
 using System;
-using Unity.VisualScripting.InputSystem;
-using UnityEngine;
 
-public class EventService : GenericSingleton<EventService>
+public class EventService : MonoGenericSingelton<EventService>
 {
     public event Action JoystickEnabled;
     public event Action JoystickDisabled;

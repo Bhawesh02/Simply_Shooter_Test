@@ -21,16 +21,19 @@ public class UIService : MonoGenericSingelton<UIService>
     private Button resartButton;
     private void Start()
     {
-        EventService.Instance.CoinCollected += UpdateCoinCount;
-        EventService.Instance.EnemyDied += IncreaseHypeBarFill;
-        EventService.Instance.PlayerWon += () => { ShowWinLoseMessage("Player Won"); };
-        EventService.Instance.PlayerLost += () => { ShowWinLoseMessage("Player Lost"); };
+        
         resartButton.onClick.AddListener(RestartScene);
         hupeBarForeground.fillAmount = 0;
     }
 
-
-    private void OnDestroy()
+    private void OnEnable()
+    {
+        EventService.Instance.CoinCollected += UpdateCoinCount;
+        EventService.Instance.EnemyDied += IncreaseHypeBarFill;
+        EventService.Instance.PlayerWon += () => { ShowWinLoseMessage("Player Won"); };
+        EventService.Instance.PlayerLost += () => { ShowWinLoseMessage("Player Lost"); };
+    }
+    private void OnDisable()
     {
         EventService.Instance.CoinCollected -= UpdateCoinCount;
         EventService.Instance.EnemyDied -= IncreaseHypeBarFill;
@@ -69,5 +72,6 @@ public class UIService : MonoGenericSingelton<UIService>
     private void RestartScene()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        
     }
 }
