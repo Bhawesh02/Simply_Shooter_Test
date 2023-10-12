@@ -116,4 +116,10 @@ public class EnemyController
 
     }
 
+    public void PlayerLost()
+    {
+        EnemyModel.CurrentEnemyState?.OnStateExit();
+        enemyView.StopAllCoroutines();
+        enemyView.enabled = false;
+    }
 }

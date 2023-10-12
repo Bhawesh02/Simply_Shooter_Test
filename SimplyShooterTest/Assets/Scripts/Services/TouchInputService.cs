@@ -1,4 +1,5 @@
 
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem.EnhancedTouch;
@@ -20,15 +21,22 @@ public class TouchInputService : MonoGenericSingelton<TouchInputService>
         ETouch.Touch.onFingerDown += HandelFingerDown;
         ETouch.Touch.onFingerMove += HandelFingerMove;
         ETouch.Touch.onFingerUp += HandelFingerUp;
+        EventService.Instance.PlayerWon += DisableTouch;
+        EventService.Instance.PlayerLost += DisableTouch;
     }
+
+
     private void OnDisable()
     {
         ETouch.Touch.onFingerDown -= HandelFingerDown;
         ETouch.Touch.onFingerMove -= HandelFingerMove;
         ETouch.Touch.onFingerUp -= HandelFingerUp;
-        
+        EventService.Instance.PlayerWon -= DisableTouch;
+        EventService.Instance.PlayerLost -= DisableTouch;
+        MovementJoystick.gameObject.SetActive(false);
         EnhancedTouchSupport.Disable();
     }
+
     private void HandelFingerDown(Finger fingerDown)
     {
         if (fingerDown.screenPosition.x > Screen.width / 2f)
@@ -93,5 +101,10 @@ public class TouchInputService : MonoGenericSingelton<TouchInputService>
     {
         yield return new WaitForSeconds(maxTapDelay);
         tapCount = 0;
+    }
+
+    private void DisableTouch()
+    {
+        this.enabled = false;
     }
 }

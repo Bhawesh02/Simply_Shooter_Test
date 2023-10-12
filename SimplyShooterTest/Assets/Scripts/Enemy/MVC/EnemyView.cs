@@ -1,4 +1,5 @@
 
+using System;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
@@ -25,6 +26,14 @@ public class EnemyView : MonoBehaviour
     private void Start()
     {
         EnemyController.ChangeState(StartState);
+        EventService.Instance.PlayerLost += EnemyController.PlayerLost;
+        EventService.Instance.InvokeEnemySpawned(this);
+    }
+
+
+    private void OnDestroy()
+    {
+        EventService.Instance.PlayerLost -= EnemyController.PlayerLost;
     }
     private void Update()
     {
@@ -39,5 +48,11 @@ public class EnemyView : MonoBehaviour
         EnemyController.DrawGizmos();
     }
 
-
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.transform.root.GetComponent<PlayerView>()!=null)
+        {
+            EventService.Instance.InvokePlayerLost() ;
+        }
+    }
 }
