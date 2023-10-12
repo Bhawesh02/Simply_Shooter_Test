@@ -17,6 +17,12 @@ public class PlayerController
         playerModel = new();
         nextEnemyDetectionTime = Time.time;
         nextEnemyShootTime = Time.time;
+        EventService.Instance.CoinCollected += IncreaseCoinCollected;
+    }
+    ~PlayerController()
+    {
+        EventService.Instance.CoinCollected -= IncreaseCoinCollected;
+
     }
 
     public void SetMovementAmount(Vector2 movAmt)
@@ -112,5 +118,16 @@ public class PlayerController
         projectile.transform.SetPositionAndRotation(spawnPoint.position, spawnPoint.rotation);
         projectile.gameObject.SetActive(true);
         projectile.Fly();
+    }
+
+
+    private void IncreaseCoinCollected(CoinPickupController controller)
+    {
+        playerModel.NumOfCoinsColleted++;
+    }
+
+    public int GetNumberOfCoinsCollected()
+    {
+        return playerModel.NumOfCoinsColleted;
     }
 }
