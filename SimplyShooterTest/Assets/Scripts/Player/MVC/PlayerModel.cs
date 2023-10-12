@@ -18,16 +18,21 @@ public class PlayerModel
     public bool InHypeMode;
     public float HypeModeDuration;
     public float HypeModeFireRateMultiplier;
-    public PlayerModel()
+    public PlayerModel(PlayerScriptableObject playerData)
     {
+        SetPlayerData(playerData);
         NumOfCoinsColleted = 0;
-        AutoAimRotationSpeed = 200f;
         Enemies = new();
-        NumOfEnemiesToKillToChargeHype = 3;
         NumberOfEnemiesKilledSinceLastHypeCharge = 0;
         InHypeMode = false;
-        HypeModeDuration = 3f;
-        HypeModeFireRateMultiplier = 5f;
         CurrentFireRate = 0f;
+    }
+    public void SetPlayerData(PlayerScriptableObject playerData)
+    {
+        AutoAimRotationSpeed = playerData.AutoAimRotationSpeed;
+        NumOfEnemiesToKillToChargeHype = playerData.NumOfEnemiesToKillToChargeHype;
+        HypeModeDuration = playerData.HypeModeDuration;
+        HypeModeFireRateMultiplier = playerData.HypeModeFireRateMultiplier;
+
     }
 }
