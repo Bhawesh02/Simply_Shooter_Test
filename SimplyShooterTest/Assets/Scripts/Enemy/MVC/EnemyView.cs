@@ -27,6 +27,7 @@ public class EnemyView : MonoBehaviour
     {
         EnemyController.ChangeState(StartState);
         EventService.Instance.PlayerLost += EnemyController.PlayerLost;
+        EventService.Instance.InvokeEnemySpawned(this);
     }
 
 

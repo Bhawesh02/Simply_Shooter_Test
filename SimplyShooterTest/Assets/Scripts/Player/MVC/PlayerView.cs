@@ -25,16 +25,32 @@ public class PlayerView : MonoBehaviour
     private void Start()
     {
         PlayerController.ChangeWeapon(startWeapon);
+        EventService.Instance.JoystickEnabled += () => { PlayerController.SetMovementAmount(Vector2.zero); };
+        EventService.Instance.JoystickDisabled += () => { PlayerController.SetMovementAmount(Vector2.zero); };
+        EventService.Instance.JoystickMoved += (joystick) => { PlayerController.SetMovementAmount(joystick.GetMovementAmount()); };
+        EventService.Instance.WeaponPickedUp += PlayerController.ChangeWeapon;
+        EventService.Instance.CoinCollected += PlayerController.IncreaseCoinCollected;
+        EventService.Instance.EnemyDied += PlayerController.EmenyKilled;
         EventService.Instance.DoubleTapOnRightHalfOfScreen += TryToGoHypeMode;
         EventService.Instance.PlayerDataChanged += (playerData) => { if (playerData == playerScriptableObject) PlayerController.RefreshPlayerData(playerData); };
         EventService.Instance.PlayerLost += PlayerDied;
+        EventService.Instance.PlayerWon += PlayerController.PlayerWon;
+        
     }
 
-    private void OnDestroy()
+    private void OnDisable()
     {
+        EventService.Instance.JoystickEnabled -= () => { PlayerController.SetMovementAmount(Vector2.zero); };
+        EventService.Instance.JoystickDisabled -= () => { PlayerController.SetMovementAmount(Vector2.zero); };
+        EventService.Instance.JoystickMoved -= (joystick) => { PlayerController.SetMovementAmount(joystick.GetMovementAmount()); };
+        EventService.Instance.WeaponPickedUp -= PlayerController.ChangeWeapon;
+        EventService.Instance.CoinCollected -= PlayerController.IncreaseCoinCollected;
+        EventService.Instance.EnemyDied -= PlayerController.EmenyKilled;
         EventService.Instance.DoubleTapOnRightHalfOfScreen -= TryToGoHypeMode;
         EventService.Instance.PlayerDataChanged -= (playerData) => { if (playerData == playerScriptableObject) PlayerController.RefreshPlayerData(playerData); };
-        EventService.Instance.PlayerLost += PlayerDied;
+        EventService.Instance.PlayerLost -= PlayerDied;
+        EventService.Instance.PlayerWon -= PlayerController.PlayerWon;
+
     }
     private void TryToGoHypeMode()
     {

@@ -18,6 +18,10 @@ public class EventService : GenericSingleton<EventService>
     public event Action HypeModeStarted;
     public event Action HypeModeEnded;
     public event Action PlayerLost;
+    public event Action<EnemyView> EnemySpawned;
+    public event Action PlayerEnteredFishLine;
+    public event Action PlayerWon;
+
     public void InvokeJoystickEnabled()
     {
         JoystickEnabled?.Invoke();
@@ -69,5 +73,17 @@ public class EventService : GenericSingleton<EventService>
     public void InvokePlayerLost()
     {
         PlayerLost?.Invoke();
+    }
+    public void InvokeEnemySpawned(EnemyView enemyView)
+    {
+        EnemySpawned?.Invoke(enemyView);
+    }
+    public void InvokePlayerEnteredFinishLine()
+    {
+        PlayerEnteredFishLine?.Invoke();
+    }
+    public void InvokePlayerWon()
+    {
+        PlayerWon?.Invoke();
     }
 }
