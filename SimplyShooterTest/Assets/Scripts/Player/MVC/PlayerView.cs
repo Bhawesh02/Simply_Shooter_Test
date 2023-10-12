@@ -19,18 +19,7 @@ public class PlayerView : MonoBehaviour
 
     private void Awake()
     {
-        PlayerController = new(this);
-        EventService.Instance.JoystickEnabled += () => { PlayerController.SetMovementAmount(Vector2.zero); };
-        EventService.Instance.JoystickDisabled += () => { PlayerController.SetMovementAmount(Vector2.zero); };
-        EventService.Instance.JoystickMoved += (joystick) => { PlayerController.SetMovementAmount(joystick.GetMovementAmount()); };
-        EventService.Instance.WeaponPickedUp += (weaponData) => { PlayerController.ChangeWeapon(weaponData); };
-    }
-    private void OnDestroy()
-    {
-        EventService.Instance.JoystickEnabled -= () => { PlayerController.SetMovementAmount(Vector2.zero); };
-        EventService.Instance.JoystickDisabled -= () => { PlayerController.SetMovementAmount(Vector2.zero); };
-        EventService.Instance.JoystickMoved -= (joystick) => { PlayerController.SetMovementAmount(joystick.GetMovementAmount()); };
-        EventService.Instance.WeaponPickedUp -= (weaponData) => { PlayerController.ChangeWeapon(weaponData); };
+        PlayerController = new(this);   
     }
     private void Start()
     {

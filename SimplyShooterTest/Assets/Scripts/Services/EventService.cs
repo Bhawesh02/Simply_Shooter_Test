@@ -12,6 +12,8 @@ public class EventService : GenericSingleton<EventService>
     public event Action<EnemyView, float> EnemyDamaged;
     public event Action<EnemyView> EnemyDied;
     public event Action<CoinPickupController> CoinCollected;
+    public event Action HypeModeStarted;
+    public event Action HypeModeEnded;
 
     public void InvokeJoystickEnabled()
     {
@@ -33,7 +35,7 @@ public class EventService : GenericSingleton<EventService>
     {
         EnemyDataChanged?.Invoke(enemy);
     }
-    public void InvokeEnemyDamaged(EnemyView enemy,float damage)
+    public void InvokeEnemyDamaged(EnemyView enemy, float damage)
     {
         EnemyDamaged?.Invoke(enemy, damage);
     }
@@ -44,5 +46,13 @@ public class EventService : GenericSingleton<EventService>
     public void InvokeCoinCollected(CoinPickupController coin)
     {
         CoinCollected?.Invoke(coin);
+    }
+    public void InvokeHypeModeStarted()
+    {
+        HypeModeStarted?.Invoke();
+    }
+    public void InvokeHypeModeEnded()
+    {
+        HypeModeEnded?.Invoke();
     }
 }
