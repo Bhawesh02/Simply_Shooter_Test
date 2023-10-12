@@ -8,7 +8,7 @@ using ETouch = UnityEngine.InputSystem.EnhancedTouch;
 
 public class TouchInputService : MonoGenericSingelton<TouchInputService>
 {
-    public JoystickController MovementJoystick;
+    public JoystickView MovementJoystick;
     public Finger MovementFinger;
     private Finger TapFinger;
     [SerializeField]
@@ -78,7 +78,7 @@ public class TouchInputService : MonoGenericSingelton<TouchInputService>
         MovementJoystick.JoystickRectTransform.anchoredPosition = ClampPostion(MovementFinger.screenPosition, MovementJoystick);
     }
 
-    private Vector2 ClampPostion(Vector2 startPosition, JoystickController joystick)
+    private Vector2 ClampPostion(Vector2 startPosition, JoystickView joystick)
     {
         if (startPosition.x < joystick.JoystickSize.x / 2)
         {

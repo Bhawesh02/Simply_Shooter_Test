@@ -7,13 +7,13 @@ public class EventService : GenericSingleton<EventService>
 {
     public event Action JoystickEnabled;
     public event Action JoystickDisabled;
-    public event Action<JoystickController> JoystickMoved;
+    public event Action<JoystickView> JoystickMoved;
     public event Action<WeaponScritableObject> WeaponPickedUp;
     public event Action<PlayerScriptableObject> PlayerDataChanged;
     public event Action<EnemyScriptableObject> EnemyDataChanged;
     public event Action<EnemyView, float> EnemyDamaged;
     public event Action<EnemyView> EnemyDied;
-    public event Action<CoinPickupController> CoinCollected;
+    public event Action<CoinPickupView> CoinCollected;
     public event Action DoubleTapOnRightHalfOfScreen;
     public event Action HypeModeStarted;
     public event Action HypeModeEnded;
@@ -30,7 +30,7 @@ public class EventService : GenericSingleton<EventService>
     {
         JoystickDisabled?.Invoke();
     }
-    public void InvokeJoystickMoved(JoystickController joystick)
+    public void InvokeJoystickMoved(JoystickView joystick)
     {
         JoystickMoved?.Invoke(joystick);
     }
@@ -54,7 +54,7 @@ public class EventService : GenericSingleton<EventService>
     {
         EnemyDied?.Invoke(enemy);
     }
-    public void InvokeCoinCollected(CoinPickupController coin)
+    public void InvokeCoinCollected(CoinPickupView coin)
     {
         CoinCollected?.Invoke(coin);
     }

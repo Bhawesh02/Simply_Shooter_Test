@@ -176,7 +176,7 @@ public class PlayerController
         playerModel.CurrentFireRate /= playerModel.HypeModeFireRateMultiplier;
     }
 
-    public void IncreaseCoinCollected(CoinPickupController controller)
+    public void IncreaseCoinCollected(CoinPickupView controller)
     {
         playerModel.NumOfCoinsColleted++;
     }

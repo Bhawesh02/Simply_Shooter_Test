@@ -5,7 +5,7 @@ using UnityEngine;
 public class CoinDropService : MonoGenericSingelton<CoinDropService>
 {
     [SerializeField]
-    private CoinPickupController coinPrefab;
+    private CoinPickupView coinPrefab;
 
     private CoinPool coinPool;
     private void Start()
@@ -23,11 +23,11 @@ public class CoinDropService : MonoGenericSingelton<CoinDropService>
     }
     private void SpawnCoin(EnemyView enemy)
     {
-        CoinPickupController coin = coinPool.GetItem();
+        CoinPickupView coin = coinPool.GetItem();
         coin.transform.position = new(enemy.transform.position.x, coin.transform.position.y, enemy.transform.position.z);
         coin.gameObject.SetActive(true);
     }
-    private void RemoveCoin(CoinPickupController coin)
+    private void RemoveCoin(CoinPickupView coin)
     {
         coinPool.ReturnItem(coin);
     }

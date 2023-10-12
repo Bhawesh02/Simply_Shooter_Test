@@ -49,7 +49,7 @@ public class UIService : MonoGenericSingelton<UIService>
         hupeBarForeground.fillAmount = player.PlayerController.GetHowMuchHypeIsLeft();
     }
 
-    private void UpdateCoinCount(CoinPickupController controller)
+    private void UpdateCoinCount(CoinPickupView controller)
     {
         coinAmtText.text = ": " + player.PlayerController.GetNumberOfCoinsCollected();
     }
