@@ -25,6 +25,8 @@ public class TouchInputService : MonoGenericSingelton<TouchInputService>
     }
     private void HandelFingerDown(Finger fingerDown)
     {
+        if (fingerDown.screenPosition.x > Screen.width / 2f)
+            return;
         if (MovementFinger != null)
             return;
         MovementFinger = fingerDown;
@@ -55,10 +57,6 @@ public class TouchInputService : MonoGenericSingelton<TouchInputService>
         {
             startPosition.x = joystick.JoystickSize.x / 2;
 
-        }
-        else if (Screen.width - startPosition.x < joystick.JoystickSize.x )
-        {
-            startPosition.x = Screen.width - joystick.JoystickSize.x ;
         }
         if (startPosition.y < joystick.JoystickSize.y / 2)
         {
