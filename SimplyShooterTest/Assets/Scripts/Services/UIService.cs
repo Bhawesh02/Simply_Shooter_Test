@@ -29,8 +29,7 @@ public class UIService : MonoGenericSingelton<UIService>
         hupeBarForeground.fillAmount = 0;
     }
 
-
-    private void OnDestroy()
+    private void OnDisable()
     {
         EventService.Instance.CoinCollected -= UpdateCoinCount;
         EventService.Instance.EnemyDied -= IncreaseHypeBarFill;
@@ -69,5 +68,6 @@ public class UIService : MonoGenericSingelton<UIService>
     private void RestartScene()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        
     }
 }

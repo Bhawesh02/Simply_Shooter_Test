@@ -23,9 +23,10 @@ public class EnemyScriptableObject : ScriptableObject
     [field: SerializeField]
     public LayerMask PlayerLayerMask { get; private set; }
 
-    private void OnValidate()
-    {
+    /*private void OnValidate()
+    {  
+        if(Application.isEditor)
         EventService.Instance.InvokeEnemyDataChanged(this);
-    }
+    }*/
 }
 

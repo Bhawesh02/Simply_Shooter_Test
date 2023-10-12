@@ -28,12 +28,17 @@ public class EnemyView : MonoBehaviour
         EnemyController.ChangeState(StartState);
         EventService.Instance.PlayerLost += EnemyController.PlayerLost;
         EventService.Instance.InvokeEnemySpawned(this);
+        EventService.Instance.EnemyDataChanged += EnemyController.RefreshData;
+        EventService.Instance.EnemyDamaged += EnemyController.TakeDamage;
+
     }
 
 
     private void OnDestroy()
     {
         EventService.Instance.PlayerLost -= EnemyController.PlayerLost;
+        EventService.Instance.EnemyDataChanged -= EnemyController.RefreshData;
+        EventService.Instance.EnemyDamaged -= EnemyController.TakeDamage;
     }
     private void Update()
     {
