@@ -710,6 +710,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <PlayButton>k__BackingField: {fileID: 575805699}
   <QuitButton>k__BackingField: {fileID: 1895067512}
+  <StartButton>k__BackingField: {fileID: 326891465}
+  <BackButton>k__BackingField: {fileID: 1438806487}
+  <ControlInfo>k__BackingField: {fileID: 1597387557}
 --- !u!1 &1061648548
 GameObject:
   m_ObjectHideFlags: 0
@@ -1525,7 +1528,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1597387558
 RectTransform:
   m_ObjectHideFlags: 0
