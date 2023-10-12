@@ -14,16 +14,17 @@ public class BulletView : ProjectileView
     }
     protected override void DealDamage()
     {
-        EventService.Instance.InvokeEnemyDamaged(enemy,Damage);
+        EventService.Instance.InvokeEnemyDamaged(enemy, Damage);
     }
 
     protected override void OnTriggerEnter(Collider other)
     {
-        if(other.GetComponent<ProjectileView>() != null || other.gameObject.CompareTag("FinishArea")) {
+        if (other.GetComponent<ProjectileView>() != null || other.gameObject.CompareTag("FinishArea") || other.transform.root.GetComponent<PlayerView>() != null)
+        {
             return;
         }
         enemy = other.GetComponent<EnemyView>();
-        if (enemy!=null)
+        if (enemy != null)
         {
             DealDamage();
         }

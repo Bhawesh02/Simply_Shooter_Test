@@ -7,9 +7,9 @@ public class MissileView : ProjectileView
     private LayerMask enemyLayerMask;
     protected override void DealDamage()
     {
-        Collider[] hitCollider = Physics.OverlapSphere(transform.position,projectileData.AoeRange, enemyLayerMask);
+        Collider[] hitCollider = Physics.OverlapSphere(transform.position, projectileData.AoeRange, enemyLayerMask);
         EnemyView enemy;
-        for(int i = 0; i < hitCollider.Length; i++)
+        for (int i = 0; i < hitCollider.Length; i++)
         {
             enemy = hitCollider[i].gameObject.GetComponent<EnemyView>();
             EventService.Instance.InvokeEnemyDamaged(enemy, Damage);
@@ -18,7 +18,7 @@ public class MissileView : ProjectileView
 
     protected override void OnTriggerEnter(Collider other)
     {
-        if (other.GetComponent<ProjectileView>() != null || other.gameObject.CompareTag("FinishArea"))
+        if (other.GetComponent<ProjectileView>() != null || other.gameObject.CompareTag("FinishArea") || other.transform.root.GetComponent<PlayerView>() != null)
         {
             return;
         }
