@@ -1,4 +1,5 @@
 
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem.EnhancedTouch;
 using ETouch = UnityEngine.InputSystem.EnhancedTouch;
@@ -8,7 +9,11 @@ public class TouchInputService : MonoGenericSingelton<TouchInputService>
 {
     public JoystickController MovementJoystick;
     public Finger MovementFinger;
-
+    private Finger TapFinger;
+    [SerializeField]
+    private float maxTapDelay;
+    private int tapCount = 0;
+    private Coroutine resetTapCoroutine;
     private void OnEnable()
     {
         EnhancedTouchSupport.Enable();
@@ -21,10 +26,24 @@ public class TouchInputService : MonoGenericSingelton<TouchInputService>
         ETouch.Touch.onFingerDown -= HandelFingerDown;
         ETouch.Touch.onFingerMove -= HandelFingerMove;
         ETouch.Touch.onFingerUp -= HandelFingerUp;
+        
         EnhancedTouchSupport.Disable();
     }
     private void HandelFingerDown(Finger fingerDown)
     {
+        if (fingerDown.screenPosition.x > Screen.width / 2f)
+        {
+            if (resetTapCoroutine != null)
+                StopCoroutine(resetTapCoroutine);
+            TapFinger = fingerDown;
+            tapCount++;
+            if (tapCount == 2)
+            {
+                Debug.Log("Start Hype");
+                tapCount = 0;
+            }
+            return;
+        }
         if (MovementFinger != null)
             return;
         MovementFinger = fingerDown;
@@ -38,6 +57,8 @@ public class TouchInputService : MonoGenericSingelton<TouchInputService>
     }
     private void HandelFingerUp(Finger lostFinger)
     {
+        if (lostFinger == TapFinger)
+            resetTapCoroutine = StartCoroutine(ResetTap());
         if (lostFinger != MovementFinger) return;
         MovementFinger = null;
         MovementJoystick.ResetJoystick();
@@ -56,10 +77,6 @@ public class TouchInputService : MonoGenericSingelton<TouchInputService>
             startPosition.x = joystick.JoystickSize.x / 2;
 
         }
-        else if (Screen.width - startPosition.x < joystick.JoystickSize.x )
-        {
-            startPosition.x = Screen.width - joystick.JoystickSize.x ;
-        }
         if (startPosition.y < joystick.JoystickSize.y / 2)
         {
             startPosition.y = joystick.JoystickSize.y / 2;
@@ -72,4 +89,9 @@ public class TouchInputService : MonoGenericSingelton<TouchInputService>
         return startPosition;
     }
 
+    private IEnumerator ResetTap()
+    {
+        yield return new WaitForSeconds(maxTapDelay);
+        tapCount = 0;
+    }
 }
