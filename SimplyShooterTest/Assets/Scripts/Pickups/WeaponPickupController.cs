@@ -1,7 +1,7 @@
 
 using UnityEngine;
 
-public class PickupWeaponController : MonoBehaviour
+public class WeaponPickupController : MonoBehaviour
 {
     public WeaponScritableObject weaponData;
 
