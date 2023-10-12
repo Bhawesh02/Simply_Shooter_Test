@@ -73,8 +73,8 @@ GameObject:
   - component: {fileID: 139230755991082174}
   - component: {fileID: 5508961813236477470}
   - component: {fileID: 521185419197783150}
-  - component: {fileID: 3582554474214256717}
   - component: {fileID: 26364969397479891}
+  - component: {fileID: 3582554474214256717}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -147,30 +147,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &3582554474214256717
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5947256146199843476}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2aa69f013e620e34c9bad668dcb7e3ad, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  NavMeshAgent: {fileID: 5508961813236477470}
-  playerScriptableObject: {fileID: 11400000, guid: 9f623f8c9cb11654db2097e05e1980c6, type: 2}
-  startWeapon: {fileID: 11400000, guid: 7ee5de77da131ce4f884ed69aff03dbe, type: 2}
-  EnemyLayer:
-    serializedVersion: 2
-    m_Bits: 8
-  Enemy: {fileID: 0}
-  WeaponContainer:
-    PistolContainer: {fileID: 1284599364733565364}
-    ShotgunContainer: {fileID: 1454180656483217223}
-    MachinegunContainer: {fileID: 8833603935719772408}
-    LauncherContainer: {fileID: 7475144629504641307}
 --- !u!136 &26364969397479891
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -190,10 +166,34 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.3056355
+  m_Radius: 0.52
   m_Height: 1.4035358
   m_Direction: 1
   m_Center: {x: -0.020139217, y: 1.2032666, z: 0.018433094}
+--- !u!114 &3582554474214256717
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5947256146199843476}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2aa69f013e620e34c9bad668dcb7e3ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  NavMeshAgent: {fileID: 5508961813236477470}
+  playerScriptableObject: {fileID: 11400000, guid: 9f623f8c9cb11654db2097e05e1980c6, type: 2}
+  startWeapon: {fileID: 11400000, guid: 1c59ebaa607c5ec4493a6c52cc4e1e06, type: 2}
+  EnemyLayer:
+    serializedVersion: 2
+    m_Bits: 8
+  WeaponContainer:
+    PistolContainer: {fileID: 1284599364733565364}
+    ShotgunContainer: {fileID: 1454180656483217223}
+    MachinegunContainer: {fileID: 8833603935719772408}
+    LauncherContainer: {fileID: 7475144629504641307}
+  <PlayerAnimator>k__BackingField: {fileID: 3078644410544645680}
 --- !u!1 &6989312110146903976
 GameObject:
   m_ObjectHideFlags: 0
@@ -328,7 +328,8 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 9030042689994880738, guid: b4b5961d043e44adfb831499af44db86, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 8623878911926619752, guid: b4b5961d043e44adfb831499af44db86, type: 3}
@@ -368,6 +369,11 @@ Transform:
 --- !u!4 &2906381649696309812 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3263662196548637883, guid: b4b5961d043e44adfb831499af44db86, type: 3}
+  m_PrefabInstance: {fileID: 369103647591356047}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &3078644410544645680 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 3433672595063091391, guid: b4b5961d043e44adfb831499af44db86, type: 3}
   m_PrefabInstance: {fileID: 369103647591356047}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &4914422277763091274 stripped

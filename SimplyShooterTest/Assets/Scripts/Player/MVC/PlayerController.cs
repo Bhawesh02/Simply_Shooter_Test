@@ -30,13 +30,29 @@ public class PlayerController
     public void MovePlayer()
     {
         if (movementAmount == Vector2.zero)
+        {
+            SetPlayerAnimation(PlayerLegAnimationType.Idel);
             return;
+        }
         Vector3 scaledMovement = playerView.NavMeshAgent.speed * Time.deltaTime * new Vector3(movementAmount.x, 0, movementAmount.y);
         if (playerModel.Enemies.Count == 0)
             playerView.transform.LookAt(playerView.transform.position + scaledMovement, Vector3.up);
         playerView.NavMeshAgent.Move(scaledMovement);
-    }
+        SetPlayerAnimation(PlayerLegAnimationType.Running);
 
+    }
+    private void SetPlayerAnimation(PlayerLegAnimationType type)
+    {
+        switch (type)
+        {
+            case PlayerLegAnimationType.Idel:
+                playerView.PlayerAnimator.SetFloat("BlendSide",0f);
+                break;
+            case PlayerLegAnimationType.Running:
+                playerView.PlayerAnimator.SetFloat("BlendSide", 1f);
+                break;
+        }
+    }
     public void ChangeWeapon(WeaponScritableObject weapon)
     {
         if (playerModel.CurrentWeapon != null && weapon.WeaponType == playerModel.CurrentWeapon.WeaponType)

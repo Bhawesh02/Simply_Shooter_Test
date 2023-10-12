@@ -18,10 +18,6 @@ public class EnemyController
         EnemyModel = new(enemyScriptableObject);
         PlayerDetectionCorotine = enemyView.StartCoroutine(PlayerDetectStart());
     }
-
-    
-
-
     public void RefreshData(EnemyScriptableObject enemyData)
     {
         if(enemyData == enemyView.EnemyScriptableObject)
@@ -29,7 +25,6 @@ public class EnemyController
             EnemyModel.SetData(enemyData);
         }
     }
-
     public void ChangeState(EnemyStates newState)
     {
         if (newState == EnemyModel.CurrentEnemyState)
@@ -38,7 +33,7 @@ public class EnemyController
         EnemyModel.CurrentEnemyState = newState;
         EnemyModel.CurrentEnemyState.OnStateEnter();
     }
-    public void ChangeSpeed()
+    public void ChangeSpeedBasedOfState()
     {
         if (EnemyModel.CurrentEnemyState == enemyView.EnemyPetrolState)
             enemyView.NavMeshAgent.speed = EnemyModel.PetrolSpeed;
@@ -113,5 +108,10 @@ public class EnemyController
         EnemyModel.CurrentEnemyState?.OnStateExit();
         enemyView.StopAllCoroutines();
         enemyView.enabled = false;
+    }
+
+    public void SetEnemyAnimation()
+    {
+
     }
 }

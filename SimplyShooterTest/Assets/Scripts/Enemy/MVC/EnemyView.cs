@@ -1,5 +1,4 @@
 
-using System;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
@@ -15,6 +14,8 @@ public class EnemyView : MonoBehaviour
     public Canvas HealthBarCanvas;
     public Image HealthBarForground;
     public Camera MainCamera;
+    [SerializeField]
+    private Animator EnemyAnimator;
     private void Awake()
     {
         EnemyController = new(this, EnemyScriptableObject);
@@ -30,9 +31,9 @@ public class EnemyView : MonoBehaviour
         EventService.Instance.InvokeEnemySpawned(this);
         EventService.Instance.EnemyDataChanged += EnemyController.RefreshData;
         EventService.Instance.EnemyDamaged += EnemyController.TakeDamage;
-
+        
     }
-
+   
 
     private void OnDestroy()
     {
