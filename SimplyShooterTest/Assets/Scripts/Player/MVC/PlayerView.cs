@@ -27,12 +27,14 @@ public class PlayerView : MonoBehaviour
         PlayerController.ChangeWeapon(startWeapon);
         EventService.Instance.DoubleTapOnRightHalfOfScreen += TryToGoHypeMode;
         EventService.Instance.PlayerDataChanged += (playerData) => { if (playerData == playerScriptableObject) PlayerController.RefreshPlayerData(playerData); };
+        EventService.Instance.PlayerLost += PlayerDied;
     }
+
     private void OnDestroy()
     {
         EventService.Instance.DoubleTapOnRightHalfOfScreen -= TryToGoHypeMode;
         EventService.Instance.PlayerDataChanged -= (playerData) => { if (playerData == playerScriptableObject) PlayerController.RefreshPlayerData(playerData); };
-        StopAllCoroutines();
+        EventService.Instance.PlayerLost += PlayerDied;
     }
     private void TryToGoHypeMode()
     {
@@ -45,6 +47,11 @@ public class PlayerView : MonoBehaviour
     {
         PlayerController.MovePlayer();
         PlayerController.EnemyFightAI();
+    }
+
+    private void PlayerDied()
+    {
+        Destroy(gameObject);
     }
 
 }

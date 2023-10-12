@@ -17,7 +17,7 @@ public class EventService : GenericSingleton<EventService>
     public event Action DoubleTapOnRightHalfOfScreen;
     public event Action HypeModeStarted;
     public event Action HypeModeEnded;
-
+    public event Action PlayerLost;
     public void InvokeJoystickEnabled()
     {
         JoystickEnabled?.Invoke();
@@ -65,5 +65,9 @@ public class EventService : GenericSingleton<EventService>
     public void InvokeHypeModeEnded()
     {
         HypeModeEnded?.Invoke();
+    }
+    public void InvokePlayerLost()
+    {
+        PlayerLost?.Invoke();
     }
 }
