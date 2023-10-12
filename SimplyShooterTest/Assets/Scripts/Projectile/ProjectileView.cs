@@ -2,7 +2,7 @@
 using System.Collections;
 using UnityEngine;
 
-public abstract class ProjectileController : MonoBehaviour
+public abstract class ProjectileView : MonoBehaviour
 {
     [SerializeField]
     protected ProjectileScriptableObject projectileData;
@@ -10,7 +10,7 @@ public abstract class ProjectileController : MonoBehaviour
     private new Rigidbody rigidbody;
     private Transform EnemyTransform = null;
     protected Coroutine AutoReturn;
-    protected float NotCollidedWaitTime = 10f;
+    protected float NotCollidedWaitTime = 5f;
     public float Damage { get;private set; }
     private void Awake()
     {

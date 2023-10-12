@@ -130,7 +130,7 @@ public class PlayerController
 
     private void ShootAtEnemy()
     {
-        ProjectileController projectile;
+        ProjectileView projectile;
         if (playerModel.CurrentWeapon.ProjectileType == ProjectileType.Missile)
             projectile = ProjectileService.Instance.GetMissile();
         else
@@ -147,7 +147,7 @@ public class PlayerController
     {
         playerModel.Enemies.Remove(enemy);
         nextEnemyDetectionTime = Time.time;
-        if (playerModel.NumberOfEnemiesKilledSinceLastHypeCharge < playerModel.NumOfEnemiesToKillToChargeHype)
+        if (!GetInHypeMode())
         {
             playerModel.NumberOfEnemiesKilledSinceLastHypeCharge++;
         }

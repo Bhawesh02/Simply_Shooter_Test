@@ -6,30 +6,30 @@ public class ProjectileService : MonoGenericSingelton<ProjectileService>
     private BulletPool bulletPool;
     private MissilePool missilePool;
     [SerializeField]
-    private BulletController bulletPrefab;
+    private BulletView bulletPrefab;
     [SerializeField]
-    private MissileController missilePrefab;
+    private MissileView missilePrefab;
     private void Start()
     {
         bulletPool = new(bulletPrefab,this);
         missilePool = new(missilePrefab,this);
     }
 
-    public BulletController GetBullet()
+    public BulletView GetBullet()
     {
         return bulletPool.GetItem();
     }
-    public void ReturnBullet(BulletController bullet)
+    public void ReturnBullet(BulletView bullet)
     {
         bullet.gameObject.SetActive(false);
         bulletPool.ReturnItem(bullet);
     }
 
-    public MissileController GetMissile()
+    public MissileView GetMissile()
     {
         return missilePool.GetItem();
     }
-    public void ReturnMissile(MissileController missile)
+    public void ReturnMissile(MissileView missile)
     {
         missile.gameObject.SetActive(false);
         missilePool.ReturnItem(missile);

@@ -1,12 +1,18 @@
 
 using System;
+using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class UIService : MonoGenericSingelton<UIService> 
+public class UIService : MonoGenericSingelton<UIService>
 {
+    public enum UpdateUi
+    {
+        Coin,
+        HypeBar
+    }
     [SerializeField]
     private TextMeshProUGUI coinAmtText;
     [SerializeField]
@@ -19,6 +25,7 @@ public class UIService : MonoGenericSingelton<UIService>
     private TextMeshProUGUI winLoseMessage;
     [SerializeField]
     private Button resartButton;
+
     private void Start()
     {
         EventService.Instance.CoinCollected += UpdateCoinCount;
@@ -50,14 +57,23 @@ public class UIService : MonoGenericSingelton<UIService>
 
     private void UpdateCoinCount(CoinPickupView controller)
     {
-        coinAmtText.text = ": " + player.PlayerController.GetNumberOfCoinsCollected();
+        StartCoroutine(WaitOneFrameUpdateUi(UpdateUi.Coin));
     }
 
     private void IncreaseHypeBarFill(EnemyView view)
     {
         if (player.PlayerController.GetInHypeMode())
             return;
-        hupeBarForeground.fillAmount = player.PlayerController.GetHowMuchHypeIsCharged();
+        StartCoroutine(WaitOneFrameUpdateUi(UpdateUi.HypeBar));
+    }
+    private IEnumerator WaitOneFrameUpdateUi(UpdateUi ui)
+    {
+        yield return null;
+        if (ui == UpdateUi.HypeBar)
+            hupeBarForeground.fillAmount = player.PlayerController.GetHowMuchHypeIsCharged();
+        else
+            coinAmtText.text = ": " + player.PlayerController.GetNumberOfCoinsCollected();
+
     }
     private void ShowWinLoseMessage(String messaeg)
     {
@@ -68,6 +84,6 @@ public class UIService : MonoGenericSingelton<UIService>
     private void RestartScene()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-        
+
     }
 }

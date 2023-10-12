@@ -1,16 +1,16 @@
 
 using UnityEngine;
 
-public class MissilePool : PoolService<MissileController>
+public class MissilePool : PoolService<MissileView>
 {
-    private MissileController missileController;
+    private MissileView missileController;
     private ProjectileService parent;
-    public MissilePool(MissileController missileController,ProjectileService bulletPoolService)
+    public MissilePool(MissileView missileController,ProjectileService bulletPoolService)
     {
         this.missileController = missileController;
         parent = bulletPoolService;
     }
-    protected override MissileController CreateItem()
+    protected override MissileView CreateItem()
     {
         return GameObject.Instantiate(missileController,parent.transform);
     }
